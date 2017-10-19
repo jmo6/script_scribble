@@ -3,6 +3,7 @@ package script.scribble;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener {
     CustomView myCustomView = null;
@@ -17,6 +18,12 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         // temporarily just go straight to the custom view
         myCustomView = new CustomView(this, input);
         myCustomView.setOnTouchListener(input);
+        //setContentView(myCustomView);
+    }
+
+    public void goCustomView (View v){
+        //myCustomView = new CustomView(this, input);
+        //myCustomView.setOnTouchListener(input);
         setContentView(myCustomView);
     }
 
