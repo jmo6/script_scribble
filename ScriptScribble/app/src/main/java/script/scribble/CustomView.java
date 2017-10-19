@@ -1,7 +1,11 @@
 package script.scribble;
 
 import android.graphics.Paint;
+<<<<<<< HEAD
+import android.view.KeyEvent;
+=======
 import android.graphics.RectF;
+>>>>>>> ebe735d7fcb96cf507b1de646a378bf3db298616
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.content.Context;
@@ -45,6 +49,8 @@ public class CustomView extends SurfaceView implements Runnable {
     // declare variables here
     Paint blackPaint, redPaint, greenPaint, bluePaint;
 
+
+
     public void pause() {
 
     }
@@ -52,6 +58,7 @@ public class CustomView extends SurfaceView implements Runnable {
     public void resume() {
 
     }
+
 
     public CustomView(Context context, Input input) {
         super(context);
@@ -83,6 +90,8 @@ public class CustomView extends SurfaceView implements Runnable {
 
         this.myThread.start();
     }
+
+
 
     @Override
     public void run() {
