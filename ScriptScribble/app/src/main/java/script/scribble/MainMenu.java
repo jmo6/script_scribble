@@ -7,7 +7,7 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener {
     CustomView myCustomView = null;
-    Input input = new Input(250);
+    Input input = new Input(25);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -45,7 +45,7 @@ public class Touch {
     }
 
     public Vector2f getSwipeDist() {
-        return start.sub(current);
+        return last.sub(current);
     }
 
     public boolean isInRect(float x, float y, float width, float height) {
