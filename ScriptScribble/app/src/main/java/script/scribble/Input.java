@@ -9,11 +9,9 @@ import java.util.ArrayList;
 public class Input implements OnTouchListener {
     private ArrayList<Touch> touches = new ArrayList<Touch>();
     private float minScrollDist;
-    private long maxTapTimeDownInMillis;
 
-    public Input(float minScrollDist, long maxTapTimeDownInMillis) {
+    public Input(float minScrollDist) {
         this.minScrollDist = minScrollDist;
-        this.maxTapTimeDownInMillis = maxTapTimeDownInMillis;
     }
 
      //Use this method at the start or end of the method or thread that updates
@@ -21,31 +19,21 @@ public class Input implements OnTouchListener {
     public void refresh() {
         for(int i = 0; i < touches.size(); i++) {
             Touch t = touches.get(i);
-            if(t.state == Touch.HELD) {
-                if(Vector2f.dist(t.start, t.current) < minScrollDist) {
-                    t.setScroll(true);
-                }
+            if(t.state == Touch.HELD && Vector2f.dist(t.start, t.current) >= minScrollDist) {
+                t.isSwipe = true;
             }
-            else if(t.state == Touch.PRESSEDUSED) {
+            else if(t.state == Touch.PRESSED) {
                 t.state = Touch.HELD;
             }
-            else if(t.state == Touch.RELEASEDUSED) {
+            else if(t.state == Touch.RELEASED) {
                 touches.remove(i);
                 i--;
             }
-            else if(t.state == Touch.PRESSED) {
-                t.state = Touch.PRESSEDUSED;
-            }
-            else if(t.state == Touch.RELEASED) {
-                if(System.currentTimeMillis() - t.pressedTime < maxTapTimeDownInMillis) {
-                    t.setTap(true);
-                }
-                t.state = Touch.RELEASEDUSED;
-            }
+            t.last = new Vector2f(t.current);
         }
     }
 
-    public boolean isRectPressed(int x, int y, int width, int height) {
+    public boolean isRectPressed(float x, float y, float width, float height) {
         for(Touch t : touches) {
             if(t.isPressed()
                     && Rectf.isInRect(t.current, new Rectf(x, y, width, height))) {
@@ -65,18 +53,7 @@ public class Input implements OnTouchListener {
         return false;
     }
 
-    public boolean isRectTapped(int x, int y, int width, int height) {
-        for(Touch t : touches) {
-            if(t.isTap()
-                    && Rectf.isInRect(t.start, new Rectf(x, y, width, height))
-                    && Rectf.isInRect(t.current, new Rectf(x, y, width, height))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isRectTouched(int x, int y, int width, int height) {
+    public boolean isRectTouched(float x, float y, float width, float height) {
         for(Touch t : touches) {
             if(Rectf.isInRect(t.current, new Rectf(x, y, width, height))) {
                 return true;
@@ -85,13 +62,14 @@ public class Input implements OnTouchListener {
         return false;
     }
 
-    public Touch getTouchInRect(int x, int y, int width, int height) {
+    // returns null if no touch is in the rect
+    public Touch getTouchInRect(float x, float y, float width, float height) {
         for(Touch t : touches) {
             if(Rectf.isInRect(t.current, new Rectf(x, y, width, height))) {
                 return new Touch(t);
             }
         }
-        return new Touch();
+        return null;
     }
 
     public ArrayList<Touch> getTouches() {
@@ -102,116 +80,80 @@ public class Input implements OnTouchListener {
         return ret;
     }
 
-    public boolean isSwiped() {
-        for(Touch t : touches) {
-            if(t.isSwipe()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isScrolled() {
-        for(Touch t : touches) {
-            if(t.isScroll()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isPinched() {
-        int nScrolls = 0;
-        for(Touch t : touches) {
-            if(t.isScroll()) {
-                nScrolls++;
-            }
-        }
-        return nScrolls == 2;
-    }
-
     public ArrayList<Touch> getSwipes() {
         ArrayList<Touch> swipes = new ArrayList<Touch>();
         for(Touch t : touches) {
-            if(t.isSwipe()) {
+            if(t.isSwipe) {
                 swipes.add(new Touch(t));
             }
         }
         return swipes;
     }
 
-    public ArrayList<Touch> getScrolls() {
-        ArrayList<Touch> scrolls = new ArrayList<Touch>();
-        for(Touch t : touches) {
-            if(t.isScroll()) {
-                scrolls.add(new Touch(t));
-            }
-        }
-        return scrolls;
-    }
-
-    public ArrayList<Touch> getPinches() {
-        ArrayList<Touch> pinches = new ArrayList<Touch>();
-        if(isPinched()) {
-            for(Touch t : touches) {
-                if(t.isScroll()) {
-                    pinches.add(new Touch(t));
-                }
-            }
-        }
-        return pinches;
-    }
-
     @Override
     public boolean onTouch(View v, MotionEvent e) {
         v.performClick();
 
-        int pointerCount = e.getPointerCount();
+//        int pointerCount = e.getPointerCount();
         int pointerIndex = e.getActionIndex();
         int pointerId = e.getPointerId(pointerIndex);
 
         switch(e.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-
-            case MotionEvent.ACTION_POINTER_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN: {
                 Vector2f p = new Vector2f(e.getX(pointerIndex),
                         e.getY((pointerIndex)));
                 Touch t = new Touch(pointerId, p, p, System.currentTimeMillis(),
                         Touch.PRESSED);
                 touches.add(new Touch(t));
-                break;
-            case MotionEvent.ACTION_MOVE:
-                for(int i = 0; i < pointerCount; i++) {
-                    Vector2f p1 = new Vector2f(e.getX(i), e.getY(i));
-                    Touch t1 = new Touch();
-                    t1.id = e.getPointerId(i);
-                    t1.current = p1;
-                    for(int j = 0; j < touches.size(); j++) {
-                        Touch touch = touches.get(j);
-                        if(touch.id == t1.id) {
-                            touches.set(j, new Touch(t1.id, touch.start,
-                                    t1.current, touch.pressedTime, touch.state));
-                        }
+            } break;
+            case MotionEvent.ACTION_MOVE: {
+                for(int i = 0; i < touches.size(); i++) {
+                    Touch t = touches.get(i);
+                    if(t.id == pointerId) {
+                        t.current.x = e.getX(pointerIndex);
+                        t.current.y = e.getY(pointerIndex);
                     }
                 }
-                break;
+            } break;
+//                for(int i = 0; i < pointerCount; i++) {
+//                    Vector2f p1 = new Vector2f(e.getX(i), e.getY(i));
+//                    Touch t1 = new Touch();
+//                    t1.id = e.getPointerId(i);
+//                    t1.current = p1;
+//                    for(int j = 0; j < touches.size(); j++) {
+//                        Touch touch = touches.get(j);
+//                        if(touch.id == t1.id) {
+//                            touches.set(j, new Touch(t1.id, touch.start,
+//                                    t1.current, touch.pressedTime, touch.state));
+//                        }
+//                    }
+//                }
+//                break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_POINTER_UP:
-                Vector2f p2 = new Vector2f(e.getX(pointerIndex),
-                        e.getY(pointerIndex));
-                Touch t2 = new Touch();
-                t2.id = pointerId;
-                t2.current = p2;
-                t2.state = Touch.RELEASED;
-                for(int j = 0; j < touches.size(); j++) {
-                    Touch touch = touches.get(j);
-                    if(touch.id == t2.id) {
-                        touches.set(j, new Touch(t2.id, touch.start, t2.current,
-                                touch.pressedTime, t2.state));
+            case MotionEvent.ACTION_POINTER_UP: {
+                for(int i = 0; i < touches.size(); i++) {
+                    Touch t = touches.get(i);
+                    if(t.id == pointerId) {
+                        t.state = Touch.RELEASED;
                     }
                 }
-                break;
+            } break;
+//                Vector2f p2 = new Vector2f(e.getX(pointerIndex),
+//                        e.getY(pointerIndex));
+//                Touch t2 = new Touch();
+//                t2.id = pointerId;
+//                t2.current = p2;
+//                t2.state = Touch.RELEASED;
+//                for(int j = 0; j < touches.size(); j++) {
+//                    Touch touch = touches.get(j);
+//                    if(touch.id == t2.id) {
+//                        touches.set(j, new Touch(t2.id, touch.start, t2.current,
+//                                touch.pressedTime, t2.state));
+//                    }
+//                }
+//                break;
         }
 
         return true;
