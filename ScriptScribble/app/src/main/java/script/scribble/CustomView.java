@@ -1,11 +1,7 @@
 package script.scribble;
 
 import android.graphics.Paint;
-<<<<<<< HEAD
-import android.view.KeyEvent;
-=======
 import android.graphics.RectF;
->>>>>>> ebe735d7fcb96cf507b1de646a378bf3db298616
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.content.Context;
