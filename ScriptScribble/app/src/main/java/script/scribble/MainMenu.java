@@ -30,8 +30,6 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         setContentView(myCustomView);
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) // Press Back Icon
@@ -64,5 +62,4 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
             // handle button presses here
         }
     }
-
 }

@@ -1,6 +1,9 @@
 package script.scribble;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -45,8 +48,6 @@ public class CustomView extends SurfaceView implements Runnable {
     // declare variables here
     Paint blackPaint, redPaint, greenPaint, bluePaint;
 
-
-
     public void pause() {
 
     }
@@ -87,8 +88,6 @@ public class CustomView extends SurfaceView implements Runnable {
         this.myThread.start();
     }
 
-
-
     @Override
     public void run() {
         RectF categoryBar = new RectF(
@@ -119,6 +118,8 @@ public class CustomView extends SurfaceView implements Runnable {
 
         Vector2f temp = new Vector2f();
 
+        Bitmap tempBMP = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+
         while(isRunning) {
             // make sure we got valid stuff
             while(myHolder == null || !myHolder.getSurface().isValid()) {
@@ -135,8 +136,11 @@ public class CustomView extends SurfaceView implements Runnable {
             /**************************************** Start Draw *********************************************/
 
             ArrayList<Touch> swipes = input.getSwipes();
-            if(swipes.size() > 0 && swipes.get(0).startedInRect(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
+            if(swipes.size() > 0 && swipes.get(0).isInRect(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
                 codingArea.top -= swipes.get(0).getSwipeDist().y;
+            }
+            if(swipes.size() > 0 && swipes.get(0).isInRect(blockBar.left, blockBar.top, blockBar.right - blockBar.left, blockBar.bottom - blockBar.top)) {
+                blockBar.right -= swipes.get(0).getSwipeDist().x;
             }
 //            if(input.isRectPressed(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
 //                bluePaint.setAlpha(50);
@@ -149,6 +153,8 @@ public class CustomView extends SurfaceView implements Runnable {
             redPaint.setAlpha(255);
             canvas.drawRect(runButton, redPaint);
             canvas.drawRect(backToMenuButton, redPaint);
+
+            canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
 
             /**************************************** End Draw *********************************************/
 
