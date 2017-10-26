@@ -15,6 +15,10 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+import script.scribble.util.Input;
+import script.scribble.util.Touch;
+import script.scribble.util.Vector2f;
+
 /* TODO's
     Initial Blocks:
         Statement Blocks:

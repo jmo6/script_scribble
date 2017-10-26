@@ -1,4 +1,4 @@
-package script.scribble;
+package script.scribble.util;
 
 public class Rectf {
     public float x, y, width, height;

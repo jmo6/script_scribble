@@ -1,4 +1,4 @@
-package script.scribble;
+package script.scribble.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

@@ -1,4 +1,4 @@
-package script.scribble;
+package script.scribble.util;
 
 public class Vector2f {
     public float x;

@@ -1,4 +1,4 @@
-package script.scribble;
+package script.scribble.util;
 
 import android.view.MotionEvent;
 import android.view.View;
