@@ -1,9 +1,25 @@
 package script.scribble.blocks;
 
-/**
- * Created by Jordan on 10/25/17.
- */
+import android.graphics.Canvas;
 
-public class MoveBlock {
+import script.scribble.CodingArea;
+
+public class MoveBlock extends Block {
     public int lastBlockMoveIndex;
+
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+    }
+
+    @Override
+    public int execute(CodingArea codingArea) {
+        return 0;
+    }
 }

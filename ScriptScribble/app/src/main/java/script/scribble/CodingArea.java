@@ -2,9 +2,11 @@ package script.scribble;
 
 import java.util.ArrayList;
 
+import script.scribble.blocks.Block;
+
 public class CodingArea {
     ArrayList<Block> blocks;
-    Block draggedBlock = null;
+    int draggedBlockIndex;
 
     void update() {
         // handle moving blocks to block menu
@@ -17,6 +19,7 @@ public class CodingArea {
     }
 
     void exeute() {
-
+        // loops through blocks array and calls their .execute function
+        // handle if a block's execute function returns ERROR
     }
 }
