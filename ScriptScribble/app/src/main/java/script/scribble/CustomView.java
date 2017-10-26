@@ -37,6 +37,79 @@ import java.util.ArrayList;
             whenButtonIsPressed
  */
 
+/*
+BlockMenu class
+    Blocks[] blocks - double array, first dimension is category, second dimension is array of blocks
+        so you can do something like
+            BlockMenu.blocks[curCategory].length to get how many blocks there are of the current category
+    int/enum curCategory - can be the following values (enum)
+        STATEMENT_BLOCKS
+        CONTROL_BLOCKS
+        CONDITIONAL_BLOCKS
+        RELATIONAL_BLOCKS
+        EVENT_BLOCKS
+        also have enums for each category for the specific block type within each category
+    Block curDraggedBlock
+
+    update()
+        handle movement of blocks from menu to coding area
+            when you start a drag on a block, it will set curDraggedBlock to a new block of the selected type
+        handle changing of block categories
+        handle movement of the block menu itself
+    draw()
+        draw blocks in menu and being moved to coding area
+
+CodingArea class
+    Block[] blocks - array of all the blocks in the coding area, ordered by the sequence it will be executed in
+    int curExecutingBlock
+
+    update()
+        handle movement of the coding area itself
+        handle movement of blocks from coding area to menu
+            also handle movement of blocks within the coding area block sequence
+            when you start a drag on a block, it will set curDraggedBlock to a new block of the selected type
+    draw()
+        draw blocks in coding area and being moved to menu
+        either have them able to move the blocks around freely or have them snap into a set placement
+            the latter is easier when we do things like pop-up dialog boxes telling them where a "syntax error" is for example
+        handle drawing of dialog boxes for syntax errors
+    execute()
+        handle execution of blocks
+
+Block class
+    image
+    position
+    index
+
+    update()
+    draw()
+    int execute(CodingArea codingArea)
+        returns a status (enum - ERROR, TRUE, FALSE) - TRUE also means no errors if it's not a conditional block
+
+MoveBlock
+    overrides execute()
+        very simple, just do Character.move() (when we get around to making a character)
+RotateBlock
+    overrides execute()
+        very simple, just do Character.rotate() (when we get around to making a character)
+IfBlock
+    lastBlockInIfIndex
+    overrides execute()
+        executes the next block in CodingArea.blocks (this should be the conditional attached to the if) to see if it returns true or false
+            also check if the block after the next is a relational block, if so, do the thing
+        if the conditional is true, execute things in the CodingArea.blocks array until curExecutingBlock == lastBlockInIfIndex
+    have to think about how to handle expanding the IfBlock so that multiple blocks can fit inside.
+WhileBlock
+    like an IfBlock, but it does the things within it in a loop until the conditional is false,
+        that is, when curExecutingBlock == lastBlockInIfIndex, it sets curExecutingBlock = the while block's index + 1 and keeps going
+    Keep track of how many iterations we've done, and if it goes past a certain number, stop the program (prevent infinite loop)
+EventBlocks
+    Event blocks, when executed, will add a listener to an EventListener class
+    this EventListener class will be called on touch input, and will determine if the event was triggered based on the input,
+    if the event was triggered, it will call the event block's eventExecute function, which will just execute everything within it
+The rest of the blocks are pretty trivial, the relational blocks need only be in the array, the control blocks will handle the execution of them
+ */
+
 public class CustomView extends SurfaceView implements Runnable {
     Context context;
     Input input;
