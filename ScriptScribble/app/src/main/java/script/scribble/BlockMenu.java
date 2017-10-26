@@ -2,6 +2,9 @@ package script.scribble;
 
 import java.util.ArrayList;
 
+import script.scribble.blocks.Block;
+
+
 public class BlockMenu {
     ArrayList<Block> blocks;
     Block draggedBlock = null;
