@@ -15,6 +15,7 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+import script.scribble.util.ImageHandler;
 import script.scribble.util.Input;
 import script.scribble.util.Touch;
 import script.scribble.util.Vector2f;
@@ -121,6 +122,10 @@ public class CustomView extends SurfaceView implements Runnable {
     SurfaceHolder myHolder;
     int screen_width, screen_height;
     boolean isRunning;
+
+    // create ImageHandler object
+    ImageHandler imageHandler = new ImageHandler(this);
+
 
     // declare variables here
     Paint blackPaint, redPaint, greenPaint, bluePaint;
