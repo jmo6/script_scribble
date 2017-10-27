@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import script.scribble.blocks.Block;
 
 public class CodingArea {
-    ArrayList<Block> blocks;
-    int draggedBlockIndex;
+    public ArrayList<Block> blocks;
+    public int draggedBlockIndex;
+    public int currentExecutingBlockIndex;
 
     void update() {
         // handle moving blocks to block menu

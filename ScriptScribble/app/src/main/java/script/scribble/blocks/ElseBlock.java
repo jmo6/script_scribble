@@ -1,9 +1,30 @@
 package script.scribble.blocks;
 
-/**
- * Created by Jordan on 10/25/17.
- */
+import android.graphics.Canvas;
 
-public class ElseBlock {
+import script.scribble.BlockMenu;
+import script.scribble.CodingArea;
+
+public class ElseBlock extends Block {
     public int lastBlockElseIndex;
+
+    public ElseBlock() {
+        id = Block.ELSE_BLOCK;
+        category = BlockMenu.CONTROL_BLOCK;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+    }
+
+    @Override
+    public int execute(CodingArea codingArea) {
+        return 0;
+    }
 }
