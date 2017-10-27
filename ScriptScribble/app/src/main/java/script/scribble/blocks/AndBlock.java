@@ -5,10 +5,6 @@ import android.graphics.Canvas;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 
-/**
- * Created by Jordan on 10/25/17.
- */
-
 public class AndBlock extends Block {
     public int lastBlockAndIndex;
 

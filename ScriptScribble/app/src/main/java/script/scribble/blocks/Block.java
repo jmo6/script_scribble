@@ -54,4 +54,15 @@ public abstract class Block {
 
     // block specific
     public abstract int execute(CodingArea codingArea);
+
+    // helper functions go below here
+    public int executeNextBlock(CodingArea codingArea) {
+        codingArea.currentExecutingBlockIndex++;
+        if(codingArea.currentExecutingBlockIndex >= codingArea.blocks.size()) {
+            // TODO: set a global error string that we can display to the user
+            System.err.println("Expected another block at the end");
+            return ERROR;
+        }
+        return codingArea.blocks.get(codingArea.currentExecutingBlockIndex).execute(codingArea);
+    }
 }

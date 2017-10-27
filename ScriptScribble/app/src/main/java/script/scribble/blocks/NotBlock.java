@@ -1,10 +1,30 @@
 package script.scribble.blocks;
 
-/**
- * Created by Jordan on 10/25/17.
- */
+import android.graphics.Canvas;
 
-public class NotBlock {
+import script.scribble.BlockMenu;
+import script.scribble.CodingArea;
+
+public class NotBlock extends Block {
     public int lastBlockNotIndex;
 
+    public NotBlock() {
+        id = Block.NOT_BLOCK;
+        category = BlockMenu.RELATION_BLOCK;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+    }
+
+    @Override
+    public int execute(CodingArea codingArea) {
+        return 0;
+    }
 }

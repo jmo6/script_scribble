@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 import script.scribble.blocks.Block;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b163201367c6c783b68cf2a3cc41ab03e022a8c9
 public class CodingArea {
-    ArrayList<Block> blocks;
-    int draggedBlockIndex;
+    public ArrayList<Block> blocks;
+    public int draggedBlockIndex;
+    public int currentExecutingBlockIndex;
 
     void update() {
         // handle moving blocks to block menu
