@@ -25,6 +25,10 @@ public class ElseBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
+        int status = executeNextBlock(codingArea);
+        if(status == FALSE) return FALSE;
+        if(status == ERROR) return ERROR;
+
         return 0;
     }
 }
