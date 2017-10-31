@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 import script.scribble.blocks.Block;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b163201367c6c783b68cf2a3cc41ab03e022a8c9
 public class BlockMenu {
     // categories
     public static int STATEMENT_BLOCK =  0;

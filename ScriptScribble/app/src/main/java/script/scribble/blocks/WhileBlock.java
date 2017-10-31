@@ -32,26 +32,17 @@ public class WhileBlock extends Block {
         if(status == ERROR) return ERROR;
 
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
-        codingArea.currentExecutingBlockIndex = firstBlockInThenIndex;
+        codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         while(status == TRUE) {
-            while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex + 1) {
-                // make sure we don't go past blocks.size()
-                if(codingArea.currentExecutingBlockIndex >= codingArea.blocks.size()) {
-                    // TODO: set a global error string that we can display to the user
-                    System.err.println("IF block does not have any condition block or statement blocks within it.");
-                    return ERROR;
-                }
-                // execute the current block
-                if(codingArea.blocks.get(codingArea.currentExecutingBlockIndex).execute(codingArea) == Block.ERROR) {
-                    return Block.ERROR; // propagate errors up
-                }
-                // go to the next block
-                codingArea.currentExecutingBlockIndex++;
+            while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex) {
+                if(executeNextBlock(codingArea) == ERROR) return ERROR;
             }
-            codingArea.currentExecutingBlockIndex = this.index + 1;
-            status = codingArea.blocks.get(codingArea.currentExecutingBlockIndex).execute(codingArea);
+            // execute the conditions again
+            codingArea.currentExecutingBlockIndex = this.index;
+            status = executeNextBlock(codingArea);
             if(status == FALSE) return FALSE;
             if(status == ERROR) return ERROR;
+            codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         }
 
         return TRUE;
