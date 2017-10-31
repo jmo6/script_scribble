@@ -122,22 +122,14 @@ public class CustomView extends SurfaceView implements Runnable {
     SurfaceHolder myHolder;
     int screen_width, screen_height;
     boolean isRunning;
+    BlockMenu blockMenu;
+    CodingArea codingArea;
 
     // create ImageHandler object
     ImageHandler imageHandler = new ImageHandler(this);
 
-
     // declare variables here
-    Paint blackPaint, redPaint, greenPaint, bluePaint;
-
-    public void pause() {
-
-    }
-
-    public void resume() {
-
-    }
-
+//    Paint blackPaint, redPaint, greenPaint, bluePaint;
 
     public CustomView(Context context, Input input) {
         super(context);
@@ -155,19 +147,28 @@ public class CustomView extends SurfaceView implements Runnable {
         screen_height = size.y;
 
         // initialize variables here
-        blackPaint = new Paint();
-        blackPaint.setARGB(255, 0, 0, 0);
+//        blackPaint = new Paint();
+//        blackPaint.setARGB(255, 0, 0, 0);
 
-        redPaint = new Paint();
-        redPaint.setARGB(255, 255, 0, 0);
-
-        greenPaint = new Paint();
-        greenPaint.setARGB(255, 0, 255, 0);
-
-        bluePaint = new Paint();
-        bluePaint.setARGB(255, 0, 0, 255);
+//        redPaint = new Paint();
+//        redPaint.setARGB(255, 255, 0, 0);
+//
+//        greenPaint = new Paint();
+//        greenPaint.setARGB(255, 0, 255, 0);
+//
+//        bluePaint = new Paint();
+//        bluePaint.setARGB(255, 0, 0, 255);
 
         this.myThread.start();
+    }
+
+    public void Draw(Canvas canvas) {
+        blockMenu.draw(canvas);
+        codingArea.draw(canvas);
+    }
+
+    public void Update() {
+
     }
 
     @Override
@@ -212,43 +213,46 @@ public class CustomView extends SurfaceView implements Runnable {
                 }
             }
 
+            input.refresh();
+
+            /*********************************** Start Update ********************************************/
+
+            Update();
+
+            /**************************************** End Update *********************************************/
+
             Canvas canvas = myHolder.lockCanvas();
             canvas.drawRGB(127, 127, 127);
 
             /**************************************** Start Draw *********************************************/
 
-            ArrayList<Touch> swipes = input.getSwipes();
-            if(swipes.size() > 0 && swipes.get(0).isInRect(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
-                codingArea.top -= swipes.get(0).getSwipeDist().y;
-            }
-            if(swipes.size() > 0 && swipes.get(0).isInRect(blockBar.left, blockBar.top, blockBar.right - blockBar.left, blockBar.bottom - blockBar.top)) {
-                blockBar.right -= swipes.get(0).getSwipeDist().x;
-            }
+            // below is temp code
+//            ArrayList<Touch> swipes = input.getSwipes();
+//            if(swipes.size() > 0 && swipes.get(0).isInRect(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
+//                codingArea.top -= swipes.get(0).getSwipeDist().y;
+//            }
+//            if(swipes.size() > 0 && swipes.get(0).isInRect(blockBar.left, blockBar.top, blockBar.right - blockBar.left, blockBar.bottom - blockBar.top)) {
+//                blockBar.right -= swipes.get(0).getSwipeDist().x;
+//            }
 //            if(input.isRectPressed(codingArea.left, codingArea.top, codingArea.right - codingArea.left, codingArea.bottom - codingArea.top)) {
 //                bluePaint.setAlpha(50);
 //            }
 
-            canvas.drawRect(codingArea, bluePaint);
-            canvas.drawRect(categoryBar, blackPaint);
-            redPaint.setAlpha(128);
-            canvas.drawRect(blockBar, redPaint);
-            redPaint.setAlpha(255);
-            canvas.drawRect(runButton, redPaint);
-            canvas.drawRect(backToMenuButton, redPaint);
+//            canvas.drawRect(codingArea, bluePaint);
+//            canvas.drawRect(categoryBar, blackPaint);
+//            redPaint.setAlpha(128);
+//            canvas.drawRect(blockBar, redPaint);
+//            redPaint.setAlpha(255);
+//            canvas.drawRect(runButton, redPaint);
+//            canvas.drawRect(backToMenuButton, redPaint);
+//
+//            canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
 
-            canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
+            Draw(canvas);
 
             /**************************************** End Draw *********************************************/
 
             myHolder.unlockCanvasAndPost(canvas);
-
-            input.refresh();
-
-            /*********************************** Start Update ********************************************/
-
-
-
-            /**************************************** End Update *********************************************/
 
             try {
                 Thread.sleep(5);
@@ -256,5 +260,13 @@ public class CustomView extends SurfaceView implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void pause() {
+
+    }
+
+    public void resume() {
+
     }
 }

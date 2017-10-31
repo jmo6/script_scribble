@@ -25,6 +25,9 @@ public class NotBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
-        return 0;
+        int status = executeNextBlock(codingArea);
+        if(status == ERROR) return ERROR;
+        if(status == TRUE) return FALSE;
+        return TRUE;
     }
 }

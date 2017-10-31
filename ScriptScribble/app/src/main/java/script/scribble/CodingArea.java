@@ -1,5 +1,7 @@
 package script.scribble;
 
+import android.graphics.Canvas;
+
 import java.util.ArrayList;
 
 import script.scribble.blocks.Block;
@@ -8,6 +10,7 @@ public class CodingArea {
     public ArrayList<Block> blocks;
     public int draggedBlockIndex;
     public int currentExecutingBlockIndex;
+    public int lastIfStatus;
 
     // handle moving blocks to block menu
     // call execute when play button is pressed
@@ -16,7 +19,10 @@ public class CodingArea {
 
     // draw blocks in coding area
     // draw draggedBlock
-    void draw() {
+    void draw(Canvas canvas) {
+        for(int i = 0; i < blocks.size(); i++) {
+            blocks.get(i).draw(canvas);
+        }
     }
 
     // loops through blocks array and calls their .execute function
