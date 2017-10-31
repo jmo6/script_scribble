@@ -6,7 +6,8 @@ import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 
 public class ElseBlock extends Block {
-    public int lastBlockElseIndex;
+    public int lastBlockInElse;
+    public int firstBlockInElse;
 
     public ElseBlock() {
         id = Block.ELSE_BLOCK;
@@ -25,10 +26,20 @@ public class ElseBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
-        int status = executeNextBlock(codingArea);
-        if(status == FALSE) return FALSE;
-        if(status == ERROR) return ERROR;
+        int status = 0;
 
-        return 0;
+        if(codingArea.lastIfStatus == TRUE){
+            status = FALSE;
+        }
+        if(codingArea.lastIfStatus == FALSE){
+            status = TRUE;
+        }
+        // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
+        codingArea.currentExecutingBlockIndex = firstBlockInElse - 1;
+        while(codingArea.currentExecutingBlockIndex != lastBlockInElse) {
+            if(executeNextBlock(codingArea) == ERROR) return ERROR;
+        }
+
+        return TRUE;
     }
 }
