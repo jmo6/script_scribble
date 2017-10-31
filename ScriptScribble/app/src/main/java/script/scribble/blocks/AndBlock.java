@@ -25,6 +25,21 @@ public class AndBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
-        return Block.TRUE;
+        int status = executeNextBlock(codingArea);
+        if (status == ERROR){
+            return Block.ERROR;
+        }
+        if (status == FALSE){
+            return FALSE;
+        }
+        status = executeNextBlock(codingArea);
+        if (status == ERROR){
+            return Block.ERROR;
+        }
+        if (status == FALSE){
+            return FALSE;
+        }
+
+        return TRUE;
     }
 }

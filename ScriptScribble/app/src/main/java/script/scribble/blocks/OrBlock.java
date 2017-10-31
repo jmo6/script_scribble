@@ -25,6 +25,21 @@ public class OrBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
-        return 0;
+        int status = executeNextBlock(codingArea);
+        if (status == ERROR){
+            return Block.ERROR;
+        }
+        if (status == TRUE){
+            return TRUE;
+        }
+        status = executeNextBlock(codingArea);
+        if (status == ERROR){
+            return Block.ERROR;
+        }
+        if (status == TRUE){
+            return TRUE;
+        }
+
+        return FALSE;
     }
 }
