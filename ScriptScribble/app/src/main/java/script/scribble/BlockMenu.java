@@ -1,5 +1,7 @@
 package script.scribble;
 
+import android.graphics.Canvas;
+
 import java.util.ArrayList;
 
 import script.scribble.blocks.Block;
@@ -21,7 +23,7 @@ public class BlockMenu {
         // handle moving blocks to coding area (draggedBlock = new Block of whatever type was pressed)
     }
 
-    void draw() {
+    void draw(Canvas canvas) {
         // draw categories and blocks within that category
         // draw draggedBlock
     }
