@@ -5,11 +5,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.content.Context;
 import android.view.Display;
 import android.graphics.Point;
+import android.view.View;
 import android.view.WindowManager;
 import android.graphics.Canvas;
 
@@ -125,6 +128,7 @@ public class CustomView extends SurfaceView implements Runnable {
     BlockMenu blockMenu;
     CodingArea codingArea;
 
+
     // create ImageHandler object
     ImageHandler imageHandler = new ImageHandler(this);
 
@@ -170,8 +174,10 @@ public class CustomView extends SurfaceView implements Runnable {
         codingArea.draw(canvas);
     }
 
-    public void Update() {
 
+
+    public void Update() {
+        codingArea.update(input);
     }
 
     @Override
@@ -216,11 +222,13 @@ public class CustomView extends SurfaceView implements Runnable {
                 }
             }
 
-            input.refresh();
+            //input.refresh();
 
             /*********************************** Start Update ********************************************/
 
             Update();
+            input.refresh();
+            //Log.d("RUN" , "Update");
 
             /**************************************** End Update *********************************************/
 
@@ -259,6 +267,8 @@ public class CustomView extends SurfaceView implements Runnable {
 //            canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
 
             Draw(canvas);
+
+
 
             /**************************************** End Draw *********************************************/
 
