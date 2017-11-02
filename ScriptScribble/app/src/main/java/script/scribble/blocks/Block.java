@@ -2,7 +2,6 @@ package script.scribble.blocks;
 
 import android.graphics.Canvas;
 
-import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.Vector2f;
 
@@ -38,13 +37,14 @@ public abstract class Block {
     public int index;
     public int id;
     public int category;
-    public int imageIndex;
     public Vector2f position;
+    public Vector2f scale;
     // drawingState is 0 when in BlockMenu, 1 when dragged, 2 when in CodingArea
     public int drawingState;
 
     public Block(){
         position = new Vector2f();
+        scale = new Vector2f(0.3f, 0.3f);
     }
 
     // maybe animations here (block specific)

@@ -4,8 +4,12 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+import script.scribble.blocks.AndBlock;
 import script.scribble.blocks.Block;
 import script.scribble.blocks.IfBlock;
+import script.scribble.blocks.IsLeftSpaceOpenBlock;
+import script.scribble.blocks.IsRightSpaceOpenBlock;
+import script.scribble.blocks.MoveBlock;
 
 public class CodingArea {
     public ArrayList<Block> blocks;
@@ -17,6 +21,13 @@ public class CodingArea {
         blocks = new ArrayList<Block>();
         // debug code
         blocks.add(new IfBlock());
+        ((IfBlock)blocks.get(0)).firstBlockInThenIndex = 4;
+        ((IfBlock)blocks.get(0)).lastBlockInThenIndex = 4;
+        blocks.add(new AndBlock());
+        blocks.add(new IsRightSpaceOpenBlock());
+        blocks.add(new IsLeftSpaceOpenBlock());
+        blocks.add(new MoveBlock());
+        execute();
     }
 
     // handle moving blocks to block menu

@@ -25,7 +25,7 @@ public class IsRightSpaceOpenBlock extends Block {
     @Override
     public int execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Right Space Open Executed");
-        return 0;
+        return TRUE;
     }
 
     private final String LOG_TAG =  "IsRightSpaceOpenBlock";

@@ -24,8 +24,8 @@ public class IsUpSpaceOpenBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
-        Log.d(LOG_TAG, "Rotate Block Executed");
-        return 0;
+        Log.d(LOG_TAG, "Is Up Space Open Block Executed");
+        return TRUE;
     }
 
     private final String LOG_TAG =  "IsUpSpaceOpenBlock";

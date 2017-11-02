@@ -216,11 +216,10 @@ public class CustomView extends SurfaceView implements Runnable {
                 }
             }
 
-            input.refresh();
-
             /*********************************** Start Update ********************************************/
 
             Update();
+            input.refresh();
 
             /**************************************** End Update *********************************************/
 

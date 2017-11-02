@@ -34,6 +34,10 @@ public class ElseBlock extends Block {
         if(codingArea.lastIfStatus == FALSE){
             status = TRUE;
         }
+        if(status == FALSE) {
+            codingArea.currentExecutingBlockIndex = lastBlockInElse + 1;
+            return FALSE;
+        }
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
         codingArea.currentExecutingBlockIndex = firstBlockInElse - 1;
         while(codingArea.currentExecutingBlockIndex != lastBlockInElse) {

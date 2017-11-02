@@ -1,6 +1,7 @@
 package script.scribble.blocks;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
@@ -24,16 +25,20 @@ public class IfBlock extends Block {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(ImageHandler.images[id], position.x, position.y, null);
-        canvas.drawBitmap(ImageHandler.images[id], position.x, position.y, null);
-//        canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
+        Rect src = new Rect(0, 0, ImageHandler.images[id].getWidth(), ImageHandler.images[id].getHeight());
+        Rect dest = new Rect((int) position.x, (int) position.y,
+                (int) (position.x + ImageHandler.images[id].getWidth() * scale.x), (int) (ImageHandler.images[id].getHeight() * scale.y));
+        canvas.drawBitmap(ImageHandler.images[id], src, dest, null);
     }
 
     @Override
     public int execute(CodingArea codingArea) {
         int status = executeNextBlock(codingArea);
         codingArea.lastIfStatus = status;
-        if(status == FALSE) return FALSE;
+        if(status == FALSE) {
+            codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
+            return FALSE;
+        }
         if(status == ERROR) return ERROR;
 
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN

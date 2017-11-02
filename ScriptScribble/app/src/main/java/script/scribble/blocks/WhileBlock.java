@@ -28,7 +28,10 @@ public class WhileBlock extends Block {
     @Override
     public int execute(CodingArea codingArea) {
         int status = executeNextBlock(codingArea);
-        if(status == FALSE) return FALSE;
+        if(status == FALSE) {
+            codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
+            return FALSE;
+        }
         if(status == ERROR) return ERROR;
 
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
@@ -40,7 +43,10 @@ public class WhileBlock extends Block {
             // execute the conditions again
             codingArea.currentExecutingBlockIndex = this.index;
             status = executeNextBlock(codingArea);
-            if(status == FALSE) return FALSE;
+            if(status == FALSE) {
+                codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
+                return FALSE;
+            }
             if(status == ERROR) return ERROR;
             codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         }
