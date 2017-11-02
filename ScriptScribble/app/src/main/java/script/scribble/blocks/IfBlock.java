@@ -25,8 +25,8 @@ public class IfBlock extends Block {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(ImageHandler.images[id], position.x, position.y, null);
-        canvas.drawBitmap(ImageHandler.images[id], position.x, position.y, null);
-        canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
+//        canvas.drawBitmap(ImageHandler.images[id], position.x, position.y, null);
+//        canvas.drawBitmap(tempBMP, new Rect(0, 0, tempBMP.getWidth(), tempBMP.getHeight()), new Rect(0, 0, 700, 450), null);
     }
 
     @Override
