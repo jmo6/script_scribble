@@ -29,14 +29,14 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         setContentView(myCustomView);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) // Press Back Icon
-        {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == android.R.id.home) // Press Back Icon
+//        {
+//            finish();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onBackPressed() {

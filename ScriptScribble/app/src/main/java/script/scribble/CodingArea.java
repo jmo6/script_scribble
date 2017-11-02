@@ -5,12 +5,19 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 
 import script.scribble.blocks.Block;
+import script.scribble.blocks.IfBlock;
 
 public class CodingArea {
     public ArrayList<Block> blocks;
     public int draggedBlockIndex;
     public int currentExecutingBlockIndex;
     public int lastIfStatus;
+
+    public CodingArea() {
+        blocks = new ArrayList<Block>();
+        // debug code
+        blocks.add(new IfBlock());
+    }
 
     // handle moving blocks to block menu
     // call execute when play button is pressed

@@ -13,7 +13,6 @@ public class IsRightSpaceOpenBlock extends Block {
     }
 
     @Override
-
     public void update() {
 
     }

@@ -13,7 +13,6 @@ public class IsUpSpaceOpenBlock extends Block {
     }
 
     @Override
-
     public void update() {
 
     }

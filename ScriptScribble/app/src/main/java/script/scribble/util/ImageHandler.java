@@ -15,10 +15,11 @@ public class ImageHandler {
     private static CustomView context;
 
     public ImageHandler(CustomView current) {
+        images = new Bitmap[Block.NUM_BLOCKS];
         this.context = current;
     }
 
-    public static void loadImages() {
+    public static void loadImages(Context context) {
         // here we load all our images we want and fill the images array
 
         // NEED TO DO::

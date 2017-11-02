@@ -159,6 +159,9 @@ public class CustomView extends SurfaceView implements Runnable {
 //        bluePaint = new Paint();
 //        bluePaint.setARGB(255, 0, 0, 255);
 
+        blockMenu = new BlockMenu();
+        codingArea = new CodingArea();
+        ImageHandler.loadImages(this.context);
         this.myThread.start();
     }
 
@@ -222,6 +225,13 @@ public class CustomView extends SurfaceView implements Runnable {
             /**************************************** End Update *********************************************/
 
             Canvas canvas = myHolder.lockCanvas();
+            if(canvas == null) {
+                try {
+                    Thread.sleep(1);
+                } catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             canvas.drawRGB(127, 127, 127);
 
             /**************************************** Start Draw *********************************************/

@@ -20,10 +20,10 @@ public abstract class Block {
     public static int ELSE_BLOCK =             3;
     public static int WHILE_BLOCK =            4;
 
-    public static int RIGHT_SPACE_OPEN_BLOCK = 5;
-    public static int LEFT_SPACE_OPEN_BLOCK =  6;
-    public static int ABOVE_SPACE_OPEN_BLOCK = 7;
-    public static int BELOW_SPACE_OPEN_BLOCK = 8;
+    public static int IS_RIGHT_SPACE_OPEN_BLOCK = 5;
+    public static int IS_LEFT_SPACE_OPEN_BLOCK =  6;
+    public static int IS_UP_SPACE_OPEN_BLOCK = 7;
+    public static int IS_DOWN_SPACE_OPEN_BLOCK = 8;
 
     public static int AND_BLOCK =              9;
     public static int OR_BLOCK =               10;
@@ -31,6 +31,8 @@ public abstract class Block {
 
     public static int RUN_PRESSED_BLOCK =      12;
     public static int BUTTON_PRESSED_BLOCK =   13;
+
+    public static int NUM_BLOCKS =             14;
 
     // this is the index of where this block is in the CodingArea.blocks array
     public int index;
@@ -42,7 +44,7 @@ public abstract class Block {
     public int drawingState;
 
     public Block(){
-
+        position = new Vector2f();
     }
 
     // maybe animations here (block specific)
