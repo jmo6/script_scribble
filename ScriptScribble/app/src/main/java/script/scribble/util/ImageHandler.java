@@ -35,10 +35,10 @@ public class ImageHandler {
         images[Block.IF_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.WHILE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.ABOVE_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.BELOW_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.IS_RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.IS_LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.IS_UP_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.IS_DOWN_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.AND_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.OR_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.NOT_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
