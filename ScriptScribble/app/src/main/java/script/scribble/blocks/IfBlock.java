@@ -33,6 +33,7 @@ public class IfBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
+        // TODO: make sure the next block is a relation or condition block, if not, return ERROR
         int status = executeNextBlock(codingArea);
         codingArea.lastIfStatus = status;
         if(status == FALSE) {
@@ -42,6 +43,7 @@ public class IfBlock extends Block {
         if(status == ERROR) return ERROR;
 
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
+        // TODO: make sure each block in the "THEN" part of the IfBlock is a statement or control block, if not, return ERROR
         codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex) {
             if(executeNextBlock(codingArea) == ERROR) return ERROR;

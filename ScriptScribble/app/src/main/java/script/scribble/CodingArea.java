@@ -3,6 +3,7 @@ package script.scribble;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,6 +28,13 @@ public class CodingArea {
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
+    RectF codingArea = new RectF(
+        0,
+        CustomView.screen_height / 2,
+        CustomView.screen_width,
+        CustomView. screen_height);
+    Paint bluePaint = new Paint();
+
     public CodingArea() {
         blocks = new ArrayList<Block>();
         // debug code
@@ -37,23 +45,26 @@ public class CodingArea {
         blocks.add(new IsRightSpaceOpenBlock());
         blocks.add(new IsLeftSpaceOpenBlock());
         blocks.add(new MoveBlock());
-        execute();
+//        execute();
+
+        bluePaint.setARGB(255, 0, 0, 255);
     }
 
     // handle moving blocks to block menu
     // call execute when play button is pressed
     void update(Input input) {
-
         // Look for the RUN button
         // If run button touched then run
         if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
-            Log.d(RUN_TAG, "Run Executed");
+            execute();
         }
     }
 
     // draw blocks in coding area
     // draw draggedBlock
     void draw(Canvas canvas) {
+        canvas.drawRect(codingArea, bluePaint);
+
         for(int i = 0; i < blocks.size(); i++) {
             blocks.get(i).draw(canvas);
         }
@@ -61,7 +72,6 @@ public class CodingArea {
         //Temporary run button for Coding Area
         redPaint.setColor(Color.RED);
         canvas.drawRect(RECT_X,RECT_Y,RECT_WIDTH,RECT_HEIGHT, redPaint);
-
     }
 
 

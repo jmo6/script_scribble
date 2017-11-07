@@ -25,6 +25,7 @@ public class AndBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
+        // TODO: make sure the next block is a relation or condition block, if not, return ERROR
         int status = executeNextBlock(codingArea);
         if (status == ERROR){
             return Block.ERROR;

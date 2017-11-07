@@ -9,7 +9,7 @@ import script.scribble.CodingArea;
 public class IsUpSpaceOpenBlock extends Block {
     public IsUpSpaceOpenBlock() {
         id = Block.IS_UP_SPACE_OPEN_BLOCK;
-        category = BlockMenu.STATEMENT_BLOCK;
+        category = BlockMenu.CONDITION_BLOCK;
     }
 
     @Override

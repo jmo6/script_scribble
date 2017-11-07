@@ -123,10 +123,11 @@ public class CustomView extends SurfaceView implements Runnable {
     Input input;
     Thread myThread;
     SurfaceHolder myHolder;
-    int screen_width, screen_height;
+    public static int screen_width, screen_height;
     boolean isRunning;
     BlockMenu blockMenu;
     CodingArea codingArea;
+    OutputWindow outputWindow;
 
 
     // create ImageHandler object
@@ -165,13 +166,15 @@ public class CustomView extends SurfaceView implements Runnable {
 
         blockMenu = new BlockMenu();
         codingArea = new CodingArea();
+        outputWindow = new OutputWindow();
         ImageHandler.loadImages(this.context);
         this.myThread.start();
     }
 
     public void Draw(Canvas canvas) {
-        blockMenu.draw(canvas);
+        outputWindow.draw(canvas);
         codingArea.draw(canvas);
+        blockMenu.draw(canvas);
     }
 
 
