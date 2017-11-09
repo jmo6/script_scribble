@@ -14,6 +14,8 @@ import script.scribble.blocks.IfBlock;
 import script.scribble.blocks.IsLeftSpaceOpenBlock;
 import script.scribble.blocks.IsRightSpaceOpenBlock;
 import script.scribble.blocks.MoveBlock;
+import script.scribble.blocks.RotateBlock;
+import script.scribble.blocks.WhileBlock;
 import script.scribble.util.Input;
 
 public class CodingArea {
@@ -38,9 +40,15 @@ public class CodingArea {
     public CodingArea() {
         blocks = new ArrayList<Block>();
         // debug code
-        blocks.add(new IfBlock());
-        ((IfBlock)blocks.get(0)).firstBlockInThenIndex = 4;
-        ((IfBlock)blocks.get(0)).lastBlockInThenIndex = 4;
+        blocks.add(new RotateBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new MoveBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new WhileBlock());
+        ((WhileBlock)blocks.get(5)).firstBlockInThenIndex = 9;
+        ((WhileBlock)blocks.get(5)).lastBlockInThenIndex = 9;
+        ((WhileBlock)blocks.get(5)).index = 5;
         blocks.add(new AndBlock());
         blocks.add(new IsRightSpaceOpenBlock());
         blocks.add(new IsLeftSpaceOpenBlock());
@@ -79,10 +87,11 @@ public class CodingArea {
     // handle if a block's execute function returns ERROR
     int execute() {
         // TODO: disable moving of blocks while executing
-        for(currentExecutingBlockIndex = 0; currentExecutingBlockIndex < blocks.size(); currentExecutingBlockIndex++) {
+        for(; currentExecutingBlockIndex < blocks.size(); currentExecutingBlockIndex++) {
             if(blocks.get(currentExecutingBlockIndex).execute(this) == Block.ERROR)  {
                 return Block.ERROR;
             }
+            break;
         }
         return Block.TRUE;
     }

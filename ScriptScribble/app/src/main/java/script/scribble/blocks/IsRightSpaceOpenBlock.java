@@ -5,6 +5,7 @@ import android.util.Log;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
+import script.scribble.OutputWindow;
 
 public class IsRightSpaceOpenBlock extends Block {
     public IsRightSpaceOpenBlock() {
@@ -25,6 +26,12 @@ public class IsRightSpaceOpenBlock extends Block {
     @Override
     public int execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Right Space Open Executed");
+        if(OutputWindow.grid.get((int)OutputWindow.character.position.y).size() <= (int)(OutputWindow.character.position.x + 1)) {
+            return FALSE;
+        }
+        if(OutputWindow.grid.get((int)OutputWindow.character.position.y).get((int)(OutputWindow.character.position.x + 1)) == OutputWindow.OBSTACLE) {
+            return FALSE;
+        }
         return TRUE;
     }
 

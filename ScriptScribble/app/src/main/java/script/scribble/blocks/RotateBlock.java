@@ -5,6 +5,7 @@ import android.util.Log;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
+import script.scribble.OutputWindow;
 
 public class RotateBlock extends Block {
     public int lastBlockRotateIndex;
@@ -28,7 +29,8 @@ public class RotateBlock extends Block {
 
     @Override
     public int execute(CodingArea codingArea) {
+        OutputWindow.character.direction++;
         Log.d(LOG_TAG, "Rotate Block Executed");
-        return 0;
+        return TRUE;
     }
 }
