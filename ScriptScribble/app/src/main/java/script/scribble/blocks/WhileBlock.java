@@ -38,19 +38,19 @@ public class WhileBlock extends Block {
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
         // TODO: make sure each block in the "THEN" part of the IfBlock is a statement or control block, if not, return ERROR
         codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
-        while(status == TRUE) {
+        if(status == TRUE) {
             while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex) {
                 if(executeNextBlock(codingArea) == ERROR) return ERROR;
             }
             // execute the conditions again
-            codingArea.currentExecutingBlockIndex = this.index;
-            status = executeNextBlock(codingArea);
-            if(status == FALSE) {
-                codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
-                return FALSE;
-            }
-            if(status == ERROR) return ERROR;
-            codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
+            codingArea.currentExecutingBlockIndex = this.index - 1;
+//            status = executeNextBlock(codingArea);
+//            if(status == FALSE) {
+//                codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
+//                return FALSE;
+//            }
+//            if(status == ERROR) return ERROR;
+//            codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         }
 
         return TRUE;

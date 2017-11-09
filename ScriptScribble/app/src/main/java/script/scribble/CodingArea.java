@@ -30,6 +30,10 @@ public class CodingArea {
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
+    public boolean executing = false;
+    final long millisPerExecuteStep = 1000;
+    long lastExecuteTime = 0;
+
     RectF codingArea = new RectF(
         0,
         CustomView.screen_height / 2,
@@ -64,7 +68,12 @@ public class CodingArea {
         // Look for the RUN button
         // If run button touched then run
         if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
+            executing = true;
+            lastExecuteTime = System.currentTimeMillis();
+        }
+        if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
             execute();
+            lastExecuteTime = System.currentTimeMillis();
         }
     }
 
@@ -86,13 +95,15 @@ public class CodingArea {
     // loops through blocks array and calls their .execute function
     // handle if a block's execute function returns ERROR
     int execute() {
+        if(!executing) return Block.FALSE;
         // TODO: disable moving of blocks while executing
-        for(; currentExecutingBlockIndex < blocks.size(); currentExecutingBlockIndex++) {
+        if(currentExecutingBlockIndex < blocks.size()) {
             if(blocks.get(currentExecutingBlockIndex).execute(this) == Block.ERROR)  {
                 return Block.ERROR;
             }
-            break;
+            currentExecutingBlockIndex++;
         }
+        if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
 }
