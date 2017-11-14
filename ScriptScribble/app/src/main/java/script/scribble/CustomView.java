@@ -121,7 +121,7 @@ The rest of the blocks are pretty trivial, the relational blocks need only be in
 public class CustomView extends SurfaceView implements Runnable {
     Context context;
     Input input;
-    Thread myThread;
+    public Thread myThread;
     SurfaceHolder myHolder;
     public static int screen_width, screen_height;
     boolean isRunning;
@@ -170,6 +170,8 @@ public class CustomView extends SurfaceView implements Runnable {
         ImageHandler.loadImages(this.context);
         this.myThread.start();
     }
+
+
 
     public void Draw(Canvas canvas) {
         outputWindow.draw(canvas);
@@ -240,7 +242,7 @@ public class CustomView extends SurfaceView implements Runnable {
                     e.printStackTrace();
                 }
             }
-            canvas.drawRGB(127, 127, 127);
+            //canvas.drawRGB(127, 127, 127);
 
             /**************************************** Start Draw *********************************************/
 
@@ -280,6 +282,7 @@ public class CustomView extends SurfaceView implements Runnable {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void pause() {

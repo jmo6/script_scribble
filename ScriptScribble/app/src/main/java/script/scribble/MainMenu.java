@@ -1,9 +1,13 @@
 package script.scribble;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
+
 
 import script.scribble.util.Input;
 
@@ -17,26 +21,45 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_main_menu);
         // initialize stuff here
 
-        // temporarily just go straight to the custom view
-        myCustomView = new CustomView(this, input);
-        //myCustomView.setOnTouchListener(input);
-        //setContentView(myCustomView);
+
     }
 
-    public void goCustomView (View v){
-        //myCustomView = new CustomView(this, input);
-        myCustomView.setOnTouchListener(input);
-        setContentView(myCustomView);
+    /*
+        Handle Button onClick
+        Switches to different activity(game mode) when button click
+        Handled by Fragment
+     */
+    public void changeFragment (View view){
+        Fragment fragment;
+
+        //Go to freemode activity
+        if(view == findViewById(R.id.freemd_btn)){
+            fragment = new Fragment_FreeMd();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_one, fragment);
+            ft.commit();
+        }
+
+        // Go to another mode activity
+        if(view == findViewById(R.id.mode2_btn)){
+            fragment = new Fragment_Mode2();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_one, fragment);
+            ft.commit();
+        }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) // Press Back Icon
-//        {
-//            finish();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    // Called from CodingArea class in goBack()
+    // Clears activity stack when BACK button from CodingArea is pressed
+    // Brings back to main menu
+    public void comeBack(){
+        //finish();
+        Intent i = new Intent();
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+    }
 
     @Override
     public void onBackPressed() {
@@ -46,13 +69,13 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onPause() {
         super.onPause();
-        myCustomView.pause();
+        //myCustomView.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        myCustomView.resume();
+        //myCustomView.resume();
     }
 
     @Override
