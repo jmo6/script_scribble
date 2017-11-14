@@ -15,6 +15,8 @@ import script.scribble.blocks.IfBlock;
 import script.scribble.blocks.IsLeftSpaceOpenBlock;
 import script.scribble.blocks.IsRightSpaceOpenBlock;
 import script.scribble.blocks.MoveBlock;
+import script.scribble.blocks.RotateBlock;
+import script.scribble.blocks.WhileBlock;
 import script.scribble.util.Input;
 
 public class CodingArea {
@@ -31,12 +33,18 @@ public class CodingArea {
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
+<<<<<<< HEAD
     // Temporary attributes for back button
     Paint blackPaint = new Paint();
     private final int BACK_BTN_X = 0;
     private final int BACK_BTN_Y = 400;
     private final int BACK_BTN_WIDTH = 100;
     private final int BACK_BTN_HEIGHT = 100;
+=======
+    public boolean executing = false;
+    final long millisPerExecuteStep = 1000;
+    long lastExecuteTime = 0;
+>>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
 
     RectF codingArea = new RectF(
         0,
@@ -49,9 +57,15 @@ public class CodingArea {
     public CodingArea() {
         blocks = new ArrayList<Block>();
         // debug code
-        blocks.add(new IfBlock());
-        ((IfBlock)blocks.get(0)).firstBlockInThenIndex = 4;
-        ((IfBlock)blocks.get(0)).lastBlockInThenIndex = 4;
+        blocks.add(new RotateBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new MoveBlock());
+        blocks.add(new RotateBlock());
+        blocks.add(new WhileBlock());
+        ((WhileBlock)blocks.get(5)).firstBlockInThenIndex = 9;
+        ((WhileBlock)blocks.get(5)).lastBlockInThenIndex = 9;
+        ((WhileBlock)blocks.get(5)).index = 5;
         blocks.add(new AndBlock());
         blocks.add(new IsRightSpaceOpenBlock());
         blocks.add(new IsLeftSpaceOpenBlock());
@@ -67,9 +81,18 @@ public class CodingArea {
     void update(Input input) {
         // Look for the RUN button
         // If run button touched then run
+<<<<<<< HEAD
         if (input.isRectPressed(RECT_X,RECT_Y,
                 RECT_WIDTH - RECT_X,RECT_HEIGHT - RECT_Y)){
+=======
+        if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
+            executing = true;
+            lastExecuteTime = System.currentTimeMillis();
+        }
+        if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
+>>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
             execute();
+            lastExecuteTime = System.currentTimeMillis();
         }
 
         // Look for BACK button
@@ -102,12 +125,15 @@ public class CodingArea {
     // loops through blocks array and calls their .execute function
     // handle if a block's execute function returns ERROR
     int execute() {
+        if(!executing) return Block.FALSE;
         // TODO: disable moving of blocks while executing
-        for(currentExecutingBlockIndex = 0; currentExecutingBlockIndex < blocks.size(); currentExecutingBlockIndex++) {
+        if(currentExecutingBlockIndex < blocks.size()) {
             if(blocks.get(currentExecutingBlockIndex).execute(this) == Block.ERROR)  {
                 return Block.ERROR;
             }
+            currentExecutingBlockIndex++;
         }
+        if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
 
