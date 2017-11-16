@@ -33,18 +33,15 @@ public class CodingArea {
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
-<<<<<<< HEAD
     // Temporary attributes for back button
     Paint blackPaint = new Paint();
     private final int BACK_BTN_X = 0;
     private final int BACK_BTN_Y = 400;
     private final int BACK_BTN_WIDTH = 100;
     private final int BACK_BTN_HEIGHT = 100;
-=======
     public boolean executing = false;
     final long millisPerExecuteStep = 1000;
     long lastExecuteTime = 0;
->>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
 
     RectF codingArea = new RectF(
         0,
@@ -81,16 +78,12 @@ public class CodingArea {
     void update(Input input) {
         // Look for the RUN button
         // If run button touched then run
-<<<<<<< HEAD
-        if (input.isRectPressed(RECT_X,RECT_Y,
-                RECT_WIDTH - RECT_X,RECT_HEIGHT - RECT_Y)){
-=======
+
         if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
             executing = true;
             lastExecuteTime = System.currentTimeMillis();
         }
         if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
->>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
             execute();
             lastExecuteTime = System.currentTimeMillis();
         }
@@ -136,5 +129,38 @@ public class CodingArea {
         if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
+    //When This block is placed on CodingArea check all blocks in the array
+    // or any that is close to This block if it's close enough call snap in place.
+    public void checkBlocksToSnapIn() {
 
+        /*(int blockBeingChecked = 0; blockBeingChecked < block.size; blockBeingChecked++){       //for loop through all blocks in array
+            (if block being checked position is within This block area){
+                call snapInPlace;
+                break;
+            }
+        }*/
+    }
+
+
+    //Get attaching block coordinates and snap This block into it.
+    public void snapInPlace(Block attachingBlock) {
+
+        //Check which 2 points of attaching block is closer to This block.
+        //Subtract the distance of the 2 points with This block and compare which one is less
+        //and move thisBlock to that point
+
+
+        /*
+        int distanceToTopIndention = attachingBlockTopIndentPosition - thisBlockPosition;
+        int distanceToBottomIndention = attachingBlockBottomIndentPosition - thisBlockPosition;
+
+        if(distanceToTopIndention < distanceToBottomIndention){
+            thisBlockPosition = attachingBlockTopIndentPosition;
+        }
+        else(){
+            thisBlockPosition = attachingBlockBottomIndentPosition;
+
+        */
+
+    }
 }
