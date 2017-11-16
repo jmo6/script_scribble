@@ -130,5 +130,38 @@ public class CodingArea {
         if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
+    //When This block is placed on CodingArea check all blocks in the array
+    // or any that is close to This block if it's close enough call snap in place.
+    public void checkBlocksToSnapIn() {
 
+        /*(int blockBeingChecked = 0; blockBeingChecked < block.size; blockBeingChecked++){       //for loop through all blocks in array
+            (if block being checked position is within This block area){
+                call snapInPlace;
+                break;
+            }
+        }*/
+    }
+
+
+    //Get attaching block coordinates and snap This block into it.
+    public void snapInPlace(Block attachingBlock) {
+
+        //Check which 2 points of attaching block is closer to This block.
+        //Subtract the distance of the 2 points with This block and compare which one is less
+        //and move thisBlock to that point
+
+
+        /*
+        int distanceToTopIndention = attachingBlockTopIndentPosition - thisBlockPosition;
+        int distanceToBottomIndention = attachingBlockBottomIndentPosition - thisBlockPosition;
+
+        if(distanceToTopIndention < distanceToBottomIndention){
+            thisBlockPosition = attachingBlockTopIndentPosition;
+        }
+        else(){
+            thisBlockPosition = attachingBlockBottomIndentPosition;
+
+        */
+
+    }
 }
