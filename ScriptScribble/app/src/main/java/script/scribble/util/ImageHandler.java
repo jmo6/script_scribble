@@ -12,11 +12,8 @@ import script.scribble.blocks.Block;
 public class ImageHandler {
     public static Bitmap[] images;
 
-    private static CustomView context;
-
-    public ImageHandler(CustomView current) {
+    public ImageHandler() {
         images = new Bitmap[Block.NUM_BLOCKS];
-        this.context = current;
     }
 
     public static void loadImages(Context context) {

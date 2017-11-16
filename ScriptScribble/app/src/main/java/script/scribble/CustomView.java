@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -52,16 +53,15 @@ public class CustomView extends SurfaceView implements Runnable {
     public Thread myThread;
     SurfaceHolder myHolder;
     public static int screen_width, screen_height;
-    boolean isRunning;
+    public static boolean isRunning;
     BlockMenu blockMenu;
     CodingArea codingArea;
     OutputWindow outputWindow;
+    AppCompatActivity parentActivity;
 
-    // create ImageHandler object
-    ImageHandler imageHandler = new ImageHandler(this);
-
-    public CustomView(Context context, Input input) {
+    public CustomView(Context context, Input input, AppCompatActivity parentActivity) {
         super(context);
+        this.parentActivity = parentActivity;
         this.context = context;
         this.input = input;
         this.myThread = new Thread(this);
@@ -82,15 +82,11 @@ public class CustomView extends SurfaceView implements Runnable {
         this.myThread.start();
     }
 
-
-
     public void Draw(Canvas canvas) {
         blockMenu.draw(canvas);
         outputWindow.draw(canvas);
         codingArea.draw(canvas);
     }
-
-
 
     public void Update() {
         codingArea.update(input);
@@ -135,14 +131,11 @@ public class CustomView extends SurfaceView implements Runnable {
                 e.printStackTrace();
             }
         }
-
-    }
-
-    public void pause() {
-
-    }
-
-    public void resume() {
-
+        parentActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                parentActivity.setContentView(R.layout.activity_main_menu);
+            }
+        });
     }
 }

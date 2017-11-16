@@ -11,15 +11,11 @@
     android:paddingTop="16dp"
     tools:context=".MainMenu">
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
     <Button
         android:id="@+id/freemd_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="changeFragment"
+        android:onClick="gotoFreeMode"
         android:text="@string/free_mode"
         android:layout_gravity="center" />
 
@@ -27,17 +23,8 @@
         android:id="@+id/mode2_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="changeFragment"
+        android:onClick="gotoMode2"
         android:text="Mode2"
-        android:layout_gravity="right"/>
-
-</LinearLayout>
-
-    <fragment
-        android:name="script.scribble.Default_Fragment"
-        android:id="@+id/fragment_one"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_gravity="center"/>
 
 </LinearLayout>

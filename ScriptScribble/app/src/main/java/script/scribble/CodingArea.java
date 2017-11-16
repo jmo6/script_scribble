@@ -33,18 +33,16 @@ public class CodingArea {
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
-<<<<<<< HEAD
     // Temporary attributes for back button
     Paint blackPaint = new Paint();
     private final int BACK_BTN_X = 0;
     private final int BACK_BTN_Y = 400;
     private final int BACK_BTN_WIDTH = 100;
     private final int BACK_BTN_HEIGHT = 100;
-=======
+
     public boolean executing = false;
     final long millisPerExecuteStep = 1000;
     long lastExecuteTime = 0;
->>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
 
     RectF codingArea = new RectF(
         0,
@@ -81,26 +79,22 @@ public class CodingArea {
     void update(Input input) {
         // Look for the RUN button
         // If run button touched then run
-<<<<<<< HEAD
-        if (input.isRectPressed(RECT_X,RECT_Y,
-                RECT_WIDTH - RECT_X,RECT_HEIGHT - RECT_Y)){
-=======
-        if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
+        if (input.isRectPressed(RECT_X, RECT_Y, RECT_WIDTH, RECT_HEIGHT)) {
             executing = true;
             lastExecuteTime = System.currentTimeMillis();
         }
         if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
->>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
             execute();
             lastExecuteTime = System.currentTimeMillis();
         }
 
         // Look for BACK button
-        //if(input.isRectPressed(BACK_BTN_X, BACK_BTN_Y,
-        //        BACK_BTN_WIDTH - BACK_BTN_X, BACK_BTN_HEIGHT - BACK_BTN_Y)){
-        //    Log.d(CODING_AREA, "Calling goBack()");
-            //goBack();
-        //}
+        if(input.isRectPressed(BACK_BTN_X, BACK_BTN_Y,
+                BACK_BTN_WIDTH, BACK_BTN_HEIGHT)){
+            // TODO: mutexes if needed
+            System.out.println("back to main menu");
+            CustomView.isRunning = false;
+        }
     }
 
     // draw blocks in coding area
@@ -114,11 +108,11 @@ public class CodingArea {
 
         //Temporary run button for Coding Area
         redPaint.setColor(Color.RED);
-        canvas.drawRect(RECT_X, RECT_Y,RECT_WIDTH, RECT_HEIGHT, redPaint);
+        canvas.drawRect(RECT_X, RECT_Y,RECT_X + RECT_WIDTH, RECT_Y + RECT_HEIGHT, redPaint);
 
         //Temporary back button for Coding Area
         blackPaint.setColor(Color.BLACK);
-        canvas.drawRect(BACK_BTN_X, BACK_BTN_Y, BACK_BTN_WIDTH, BACK_BTN_HEIGHT, blackPaint);
+        canvas.drawRect(BACK_BTN_X, BACK_BTN_Y, BACK_BTN_X + BACK_BTN_WIDTH, BACK_BTN_Y + BACK_BTN_HEIGHT, blackPaint);
     }
 
 
