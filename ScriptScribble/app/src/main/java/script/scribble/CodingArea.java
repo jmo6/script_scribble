@@ -1,5 +1,6 @@
 package script.scribble;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,16 +24,27 @@ public class CodingArea {
     public int draggedBlockIndex;
     public int currentExecutingBlockIndex;
     public int lastIfStatus;
+
+    // Temporary Attributes for run button
     Paint redPaint = new Paint();
-    private final String RUN_TAG = "RUN EXECUTED";
+    private final String CODING_AREA = "BACK_BUTTON EXECUTED";
     private final int RECT_X = 30;
     private final int RECT_Y = 30;
     private final int RECT_WIDTH = 80;
     private final int RECT_HEIGHT = 80;
 
+<<<<<<< HEAD
+    // Temporary attributes for back button
+    Paint blackPaint = new Paint();
+    private final int BACK_BTN_X = 0;
+    private final int BACK_BTN_Y = 400;
+    private final int BACK_BTN_WIDTH = 100;
+    private final int BACK_BTN_HEIGHT = 100;
+=======
     public boolean executing = false;
     final long millisPerExecuteStep = 1000;
     long lastExecuteTime = 0;
+>>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
 
     RectF codingArea = new RectF(
         0,
@@ -40,6 +52,7 @@ public class CodingArea {
         CustomView.screen_width,
         CustomView. screen_height);
     Paint bluePaint = new Paint();
+
 
     public CodingArea() {
         blocks = new ArrayList<Block>();
@@ -60,6 +73,7 @@ public class CodingArea {
 //        execute();
 
         bluePaint.setARGB(255, 0, 0, 255);
+
     }
 
     // handle moving blocks to block menu
@@ -67,14 +81,26 @@ public class CodingArea {
     void update(Input input) {
         // Look for the RUN button
         // If run button touched then run
+<<<<<<< HEAD
+        if (input.isRectPressed(RECT_X,RECT_Y,
+                RECT_WIDTH - RECT_X,RECT_HEIGHT - RECT_Y)){
+=======
         if (input.isRectPressed(RECT_X,RECT_Y,RECT_WIDTH-RECT_X,RECT_HEIGHT-RECT_Y)){
             executing = true;
             lastExecuteTime = System.currentTimeMillis();
         }
         if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
+>>>>>>> e437a338092f1c20e46d776e055fb31079b53a3e
             execute();
             lastExecuteTime = System.currentTimeMillis();
         }
+
+        // Look for BACK button
+        //if(input.isRectPressed(BACK_BTN_X, BACK_BTN_Y,
+        //        BACK_BTN_WIDTH - BACK_BTN_X, BACK_BTN_HEIGHT - BACK_BTN_Y)){
+        //    Log.d(CODING_AREA, "Calling goBack()");
+            //goBack();
+        //}
     }
 
     // draw blocks in coding area
@@ -88,7 +114,11 @@ public class CodingArea {
 
         //Temporary run button for Coding Area
         redPaint.setColor(Color.RED);
-        canvas.drawRect(RECT_X,RECT_Y,RECT_WIDTH,RECT_HEIGHT, redPaint);
+        canvas.drawRect(RECT_X, RECT_Y,RECT_WIDTH, RECT_HEIGHT, redPaint);
+
+        //Temporary back button for Coding Area
+        blackPaint.setColor(Color.BLACK);
+        canvas.drawRect(BACK_BTN_X, BACK_BTN_Y, BACK_BTN_WIDTH, BACK_BTN_HEIGHT, blackPaint);
     }
 
 
@@ -106,4 +136,5 @@ public class CodingArea {
         if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
+
 }

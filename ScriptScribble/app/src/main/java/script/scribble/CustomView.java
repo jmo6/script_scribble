@@ -49,7 +49,7 @@ BlockMenu class
 public class CustomView extends SurfaceView implements Runnable {
     Context context;
     Input input;
-    Thread myThread;
+    public Thread myThread;
     SurfaceHolder myHolder;
     public static int screen_width, screen_height;
     boolean isRunning;
@@ -81,6 +81,8 @@ public class CustomView extends SurfaceView implements Runnable {
         ImageHandler.loadImages(this.context);
         this.myThread.start();
     }
+
+
 
     public void Draw(Canvas canvas) {
         blockMenu.draw(canvas);
@@ -117,7 +119,7 @@ public class CustomView extends SurfaceView implements Runnable {
             if(canvas == null) {
                 return;
             }
-            canvas.drawRGB(127, 127, 127);
+            //canvas.drawRGB(127, 127, 127);
 
             /**************************************** Start Draw *********************************************/
 
@@ -133,6 +135,7 @@ public class CustomView extends SurfaceView implements Runnable {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void pause() {

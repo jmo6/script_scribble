@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ScriptScribble</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="free_mode">Free Mode</string>
+    <string name="home">Home</string>
 </resources>
