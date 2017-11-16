@@ -132,13 +132,13 @@ public class CodingArea {
     //When This block is placed on CodingArea check all blocks in the array
     // or any that is close to This block if it's close enough call snap in place.
     public void checkBlocksToSnapIn() {
-
-        /*(int blockBeingChecked = 0; blockBeingChecked < block.size; blockBeingChecked++){       //for loop through all blocks in array
-            (if block being checked position is within This block area){
-                call snapInPlace;
+        int distanceForSnapIn = 2;
+        for(int blockBeingChecked = 0; blockBeingChecked < blocks.size(); blockBeingChecked++){       //for loop through all blocks in array
+            if ((blocks.get(blockBeingChecked).position.distFrom(this.blocks.get(draggedBlockIndex).position))  <= distanceForSnapIn  ){                              //if block being checked position is within This block area
+                snapInPlace(blocks.get(blockBeingChecked));
                 break;
             }
-        }*/
+        }
     }
 
 
