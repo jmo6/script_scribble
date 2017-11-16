@@ -7,31 +7,31 @@ import script.scribble.util.Vector2f;
 
 public abstract class Block {
     // execute states
-    public static int ERROR = 0;
-    public static int TRUE =  1;
-    public static int FALSE = 2;
+    public static final int ERROR = 0;
+    public static final int TRUE =  1;
+    public static final int FALSE = 2;
 
     // block ids
-    public static int MOVE_BLOCK =             0;
-    public static int ROTATE_BLOCK =           1;
+    public static final int MOVE_BLOCK =                0;
+    public static final int ROTATE_BLOCK =              1;
 
-    public static int IF_BLOCK =               2;
-    public static int ELSE_BLOCK =             3;
-    public static int WHILE_BLOCK =            4;
+    public static final int IF_BLOCK =                  2;
+    public static final int ELSE_BLOCK =                3;
+    public static final int WHILE_BLOCK =               4;
 
-    public static int IS_RIGHT_SPACE_OPEN_BLOCK = 5;
-    public static int IS_LEFT_SPACE_OPEN_BLOCK =  6;
-    public static int IS_UP_SPACE_OPEN_BLOCK = 7;
-    public static int IS_DOWN_SPACE_OPEN_BLOCK = 8;
+    public static final int IS_RIGHT_SPACE_OPEN_BLOCK = 5;
+    public static final int IS_LEFT_SPACE_OPEN_BLOCK =  6;
+    public static final int IS_UP_SPACE_OPEN_BLOCK =    7;
+    public static final int IS_DOWN_SPACE_OPEN_BLOCK =  8;
 
-    public static int AND_BLOCK =              9;
-    public static int OR_BLOCK =               10;
-    public static int NOT_BLOCK =              11;
+    public static final int AND_BLOCK =                 9;
+    public static final int OR_BLOCK =                  10;
+    public static final int NOT_BLOCK =                 11;
 
-    public static int RUN_PRESSED_BLOCK =      12;
-    public static int BUTTON_PRESSED_BLOCK =   13;
+    public static final int RUN_PRESSED_BLOCK =         12;
+    public static final int BUTTON_PRESSED_BLOCK =      13;
 
-    public static int NUM_BLOCKS =             14;
+    public static final int NUM_BLOCKS =                14;
 
     // this is the index of where this block is in the CodingArea.blocks array
     public int index;

@@ -30,22 +30,19 @@ public class ImageHandler {
                 ImageHandler is a non-activity class so passing context might cause mem leaks.
                 Context is being passed from CustomView.java
          */
-        images[Block.MOVE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.MOVE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.move_right);
         images[Block.ROTATE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.IF_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.IF_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.if_block);
         images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.WHILE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.IS_RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.IS_LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.IS_UP_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.IS_DOWN_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.AND_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.OR_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-        images[Block.NOT_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        images[Block.WHILE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.while_block);
+        images[Block.IS_RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.right_space_open);
+        images[Block.IS_LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.left_space_open);
+        images[Block.IS_UP_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.up_space_open);
+        images[Block.IS_DOWN_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.down_space_open);
+        images[Block.AND_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.and_block);
+        images[Block.OR_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.or_block);
+        images[Block.NOT_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.not_block);
         images[Block.RUN_PRESSED_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.BUTTON_PRESSED_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
-
-
     }
-
 }

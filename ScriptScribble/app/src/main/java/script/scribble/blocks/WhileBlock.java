@@ -1,9 +1,11 @@
 package script.scribble.blocks;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
+import script.scribble.util.ImageHandler;
 
 public class WhileBlock extends Block {
     // this is the index of the last block within the "then" part of this while Block
@@ -22,7 +24,10 @@ public class WhileBlock extends Block {
 
     @Override
     public void draw(Canvas canvas) {
-
+        Rect src = new Rect(0, 0, ImageHandler.images[id].getWidth(), ImageHandler.images[id].getHeight());
+        Rect dest = new Rect((int) position.x, (int) position.y,
+                (int) (position.x + ImageHandler.images[id].getWidth() * scale.x), (int) (ImageHandler.images[id].getHeight() * scale.y));
+        canvas.drawBitmap(ImageHandler.images[id], src, dest, null);
     }
 
     @Override
