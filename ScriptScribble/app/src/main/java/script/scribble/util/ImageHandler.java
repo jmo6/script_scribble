@@ -12,11 +12,8 @@ import script.scribble.blocks.Block;
 public class ImageHandler {
     public static Bitmap[] images;
 
-    public ImageHandler() {
-        images = new Bitmap[Block.NUM_BLOCKS];
-    }
-
     public static void loadImages(Context context) {
+        images = new Bitmap[Block.NUM_BLOCKS];
         // here we load all our images we want and fill the images array
 
         // NEED TO DO::
