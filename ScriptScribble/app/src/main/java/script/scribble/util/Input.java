@@ -62,6 +62,15 @@ public class Input implements OnTouchListener {
         return false;
     }
 
+    public boolean wasRectTouched(float x, float y, float width, float height) {
+        for(Touch t : touches) {
+            if(Rectf.isInRect(t.last, new Rectf(x, y, width, height))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // returns null if no touch is in the rect
     public Touch getTouchInRect(float x, float y, float width, float height) {
         for(Touch t : touches) {

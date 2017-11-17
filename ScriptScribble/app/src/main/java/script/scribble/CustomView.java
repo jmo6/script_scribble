@@ -83,9 +83,9 @@ public class CustomView extends SurfaceView implements Runnable {
     }
 
     public void Draw(Canvas canvas) {
-        blockMenu.draw(canvas);
         outputWindow.draw(canvas);
         codingArea.draw(canvas);
+        blockMenu.draw(canvas);
     }
 
     public void Update() {

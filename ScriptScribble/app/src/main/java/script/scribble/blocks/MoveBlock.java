@@ -29,7 +29,7 @@ public class MoveBlock extends Block {
     public void draw(Canvas canvas) {
         Rect src = new Rect(0, 0, ImageHandler.images[id].getWidth(), ImageHandler.images[id].getHeight());
         Rect dest = new Rect((int) position.x, (int) position.y,
-                (int) (position.x + ImageHandler.images[id].getWidth() * scale.x), (int) (ImageHandler.images[id].getHeight() * scale.y));
+                (int) (position.x + ImageHandler.images[id].getWidth() * scale.x), (int) (position.y + ImageHandler.images[id].getHeight() * scale.y));
         canvas.drawBitmap(ImageHandler.images[id], src, dest, null);
     }
 
