@@ -13,7 +13,7 @@ public class OutputWindow {
 
     public static ArrayList<ArrayList<Integer>> grid;
     public static Character character;
-    int num_cells = 20;
+    int num_cells = 10;
     int grid_cell_width = CustomView.screen_width / num_cells;
     int grid_cell_height = (CustomView.screen_height / 2) / num_cells;
 
@@ -39,7 +39,7 @@ public class OutputWindow {
         blackPaint.setColor(Color.BLACK);
 
         // debug
-        grid.get(1).set(10, OBSTACLE);
+        grid.get(1).set(5, OBSTACLE);
     }
 
     public void draw(Canvas canvas) {
