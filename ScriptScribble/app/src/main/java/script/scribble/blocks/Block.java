@@ -12,22 +12,27 @@ public abstract class Block {
     public static final int FALSE = 2;
 
     // block ids
+    // STATEMENT
     public static final int MOVE_BLOCK =                0;
     public static final int ROTATE_BLOCK =              1;
 
+    // CONTROL
     public static final int IF_BLOCK =                  2;
     public static final int ELSE_BLOCK =                3;
     public static final int WHILE_BLOCK =               4;
 
+    // CONDITION
     public static final int IS_RIGHT_SPACE_OPEN_BLOCK = 5;
     public static final int IS_LEFT_SPACE_OPEN_BLOCK =  6;
     public static final int IS_UP_SPACE_OPEN_BLOCK =    7;
     public static final int IS_DOWN_SPACE_OPEN_BLOCK =  8;
 
+    // RELATION
     public static final int AND_BLOCK =                 9;
     public static final int OR_BLOCK =                  10;
     public static final int NOT_BLOCK =                 11;
 
+    // EVENT
     public static final int RUN_PRESSED_BLOCK =         12;
     public static final int BUTTON_PRESSED_BLOCK =      13;
 
