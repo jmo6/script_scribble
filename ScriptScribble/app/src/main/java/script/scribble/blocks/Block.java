@@ -53,14 +53,14 @@ public abstract class Block {
     }
 
     // maybe animations here (block specific)
-    public abstract void update();
+    public abstract void Update();
 
     // for the most part, this will just be canvas.drawBitmap(imageIndex, x, y);
     // this will change based on drawingState
-    public abstract void draw(Canvas canvas);
+    public abstract void Draw(Canvas canvas);
 
     // block specific
-    public abstract int execute(CodingArea codingArea);
+    public abstract int Execute(CodingArea codingArea);
 
     // helper functions go below here
     public int executeNextBlock(CodingArea codingArea) {
@@ -70,6 +70,6 @@ public abstract class Block {
             System.err.println("Expected another block at the end");
             return ERROR;
         }
-        return codingArea.blocks.get(codingArea.currentExecutingBlockIndex).execute(codingArea);
+        return codingArea.blocks.get(codingArea.currentExecutingBlockIndex).Execute(codingArea);
     }
 }

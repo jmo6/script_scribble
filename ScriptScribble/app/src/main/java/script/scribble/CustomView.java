@@ -38,12 +38,12 @@ BlockMenu class
         also have enums for each category for the specific block type within each category
     Block curDraggedBlock
 
-    update()
+    Update()
         handle movement of blocks from menu to coding area
             when you start a drag on a block, it will set curDraggedBlock to a new block of the selected type
         handle changing of block categories
         handle movement of the block menu itself
-    draw()
+    Draw()
         draw blocks in menu and being moved to coding area
  */
 
@@ -83,13 +83,13 @@ public class CustomView extends SurfaceView implements Runnable {
     }
 
     public void Draw(Canvas canvas) {
-        outputWindow.draw(canvas);
-        codingArea.draw(canvas);
-        blockMenu.draw(canvas);
+        outputWindow.Draw(canvas);
+        codingArea.Draw(canvas);
+        blockMenu.Draw(canvas);
     }
 
     public void Update() {
-        codingArea.update(input);
+        codingArea.Update(input);
     }
 
     @Override

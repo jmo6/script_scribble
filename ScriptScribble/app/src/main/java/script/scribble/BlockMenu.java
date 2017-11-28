@@ -187,48 +187,38 @@ public class BlockMenu {
 
     }
 
-    void update() {
+    void Update() {
         // handle switching categories
         // handle moving blocks to coding area (draggedBlock = new Block of whatever type was pressed)
     }
 
-
-    void draw(Canvas canvas) {
+    void Draw(Canvas canvas) {
         // draw categories and blocks within that category
         // draw draggedBlock
         canvas.drawRect(blockBar, yellowPaint);
 
-
         // Place all STATEMENT blocks onto block menu
         for(int blocksToDraw = 0; blocksToDraw < blocks.get(STATEMENT_BLOCK).size(); blocksToDraw++){
             Block statementBlock = blocks.get(STATEMENT_BLOCK).get(blocksToDraw);
-            statementBlock.draw(canvas);
+            statementBlock.Draw(canvas);
         }
-
-
-
 
         // Place all CONTROL blocks onto block menu
         for(int blocksToDraw = 0; blocksToDraw < blocks.get(CONTROL_BLOCK).size(); blocksToDraw++){
             Block controlBlock = blocks.get(CONTROL_BLOCK).get(blocksToDraw);
-            controlBlock.draw(canvas);
+            controlBlock.Draw(canvas);
         }
-
-
-
 
         // Place all CONDITION blocks onto block menu
         for(int blocksToDraw = 0; blocksToDraw < blocks.get(CONDITION_BLOCK).size();blocksToDraw++){
             Block conditionBlock = blocks.get(CONDITION_BLOCK).get(blocksToDraw);
-            conditionBlock.draw(canvas);
+            conditionBlock.Draw(canvas);
         }
-
-
 
         // Place all RELATION blocks onto block menu
         for (int blocksToDraw = 0; blocksToDraw < blocks.get(RELATION_BLOCK).size(); blocksToDraw++){
             Block relationBlock = blocks.get(RELATION_BLOCK).get(blocksToDraw);
-            relationBlock.draw(canvas);
+            relationBlock.Draw(canvas);
         }
 
     }

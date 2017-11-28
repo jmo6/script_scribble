@@ -29,7 +29,7 @@ public class Button {
 		rect.bottom += this.padding;
 	}
 	
-	void draw(Canvas canvas) {
+	void Draw(Canvas canvas) {
 		canvas.drawRect(rect, background);
 		canvas.drawText(text, x, y, font);
 	}
