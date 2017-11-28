@@ -165,8 +165,10 @@ public class CodingArea {
 
 
         /*
-        int distanceToTopIndention = attachingBlockTopIndentPosition - thisBlockPosition;
-        int distanceToBottomIndention = attachingBlockBottomIndentPosition - thisBlockPosition;
+        int distanceOfTopLeftCornerToTopIndentionPosition = blocks.get(attachingBlock).position
+
+        int distanceToTopIndention = (blocks.get(attachingBlock).position.distFrom(this.blocks.get(draggedBlockIndex).position) ;
+        int distanceToBottomIndention = (blocks.get(attachingBlock).position.distFrom(this.blocks.get(draggedBlockIndex).position);
 
         if(distanceToTopIndention < distanceToBottomIndention){
             thisBlockPosition = attachingBlockTopIndentPosition;
