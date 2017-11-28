@@ -10,6 +10,8 @@ import script.scribble.OutputWindow;
 import script.scribble.util.ImageHandler;
 
 public class IsRightSpaceOpenBlock extends Block {
+    private final String LOG_TAG =  "IsRightSpaceOpenBlock";
+
     public IsRightSpaceOpenBlock() {
         id = Block.IS_RIGHT_SPACE_OPEN_BLOCK;
         category = BlockMenu.CONDITION_BLOCK;
@@ -39,6 +41,4 @@ public class IsRightSpaceOpenBlock extends Block {
         }
         return TRUE;
     }
-
-    private final String LOG_TAG =  "IsRightSpaceOpenBlock";
 }

@@ -51,8 +51,7 @@ public class CodingArea {
         CustomView.screen_width,
         CustomView. screen_height);
     Paint bluePaint = new Paint();
-
-
+    
     public CodingArea() {
         blocks = new ArrayList<Block>();
         // debug code

@@ -125,9 +125,6 @@ public class BlockMenu {
         blocks.get(CONTROL_BLOCK).get(2).position.y = blockBar.left + whileBlock_PosY;
 
 
-
-
-
         //Position CONDITION_BLOCK onto block menu
         final float scaleCondBlock_X = 0.7f;
         final float scaleCondBlock_Y = 0.4f;
@@ -161,7 +158,6 @@ public class BlockMenu {
                 Vector2f(scaleCondBlock_X, scaleCondBlock_Y);
 
 
-
         //Position RELATION_BLOCK onto block menu
         final float scaleRelationBlock_X = 0.4f;
         final float scaleRelationBlock_Y = 0.4f;
@@ -182,9 +178,6 @@ public class BlockMenu {
         blocks.get(RELATION_BLOCK).get(2).position.y = blockBar.top + notBlock_PosY;
         blocks.get(RELATION_BLOCK).get(2).scale = new
                 Vector2f(scaleRelationBlock_X, scaleRelationBlock_Y);
-
-
-
     }
 
     void Update() {

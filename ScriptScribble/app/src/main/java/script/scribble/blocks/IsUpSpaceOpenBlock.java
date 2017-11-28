@@ -9,6 +9,8 @@ import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
 
 public class IsUpSpaceOpenBlock extends Block {
+    private final String LOG_TAG =  "IsUpSpaceOpenBlock";
+
     public IsUpSpaceOpenBlock() {
         id = Block.IS_UP_SPACE_OPEN_BLOCK;
         category = BlockMenu.CONDITION_BLOCK;
@@ -32,6 +34,4 @@ public class IsUpSpaceOpenBlock extends Block {
         Log.d(LOG_TAG, "Is Up Space Open Block Executed");
         return TRUE;
     }
-
-    private final String LOG_TAG =  "IsUpSpaceOpenBlock";
 }
