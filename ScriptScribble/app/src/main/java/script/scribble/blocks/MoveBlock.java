@@ -21,12 +21,12 @@ public class MoveBlock extends Block {
     }
 
     @Override
-    public void update() {
+    public void Update() {
 
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void Draw(Canvas canvas) {
         Rect src = new Rect(0, 0, ImageHandler.images[id].getWidth(), ImageHandler.images[id].getHeight());
         Rect dest = new Rect((int) position.x, (int) position.y,
                 (int) (position.x + ImageHandler.images[id].getWidth() * scale.x), (int) (position.y + ImageHandler.images[id].getHeight() * scale.y));
@@ -34,7 +34,7 @@ public class MoveBlock extends Block {
     }
 
     @Override
-    public int execute(CodingArea codingArea) {
+    public int Execute(CodingArea codingArea) {
         if(OutputWindow.character.direction % 4 == Character.UP) {
             OutputWindow.character.position.y--;
         } else if(OutputWindow.character.direction % 4 == Character.LEFT) {

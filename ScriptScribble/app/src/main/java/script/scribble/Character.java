@@ -25,7 +25,7 @@ public class Character {
         bluePaint.setColor(Color.BLUE);
     }
 
-    public void draw(Canvas canvas) {
+    public void Draw(Canvas canvas) {
         canvas.drawRect(position.x * width, position.y * height,
                 position.x * width + width, position.y * height + height, bluePaint);
     }

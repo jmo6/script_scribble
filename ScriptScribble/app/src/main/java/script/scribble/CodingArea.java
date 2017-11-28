@@ -69,7 +69,7 @@ public class CodingArea {
         blocks.add(new IsRightSpaceOpenBlock());
         blocks.add(new IsLeftSpaceOpenBlock());
         blocks.add(new MoveBlock());
-//        execute();
+//        Execute();
 
         bluePaint.setARGB(255, 0, 0, 255);
 
@@ -77,7 +77,7 @@ public class CodingArea {
 
     // handle moving blocks to block menu
     // call execute when play button is pressed
-    void update(Input input) {
+    void Update(Input input) {
         // Look for the RUN button
         // If run button touched then run
         if (input.isRectPressed(RUN_BTN_X, RUN_BTN_Y, RUN_BTN_WIDTH, RUN_BTN_HEIGHT)) {
@@ -85,7 +85,7 @@ public class CodingArea {
             lastExecuteTime = System.currentTimeMillis();
         }
         if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
-            execute();
+            Execute();
             lastExecuteTime = System.currentTimeMillis();
         }
 
@@ -112,11 +112,11 @@ public class CodingArea {
 
     // draw blocks in coding area
     // draw draggedBlock
-    void draw(Canvas canvas) {
+    void Draw(Canvas canvas) {
         canvas.drawRect(codingArea, bluePaint);
 
         for(int i = 0; i < blocks.size(); i++) {
-            blocks.get(i).draw(canvas);
+            blocks.get(i).Draw(canvas);
         }
 
         //Temporary run button for Coding Area
@@ -128,14 +128,13 @@ public class CodingArea {
         canvas.drawRect(BACK_BTN_X, BACK_BTN_Y, BACK_BTN_X + BACK_BTN_WIDTH, BACK_BTN_Y + BACK_BTN_HEIGHT, blackPaint);
     }
 
-
     // loops through blocks array and calls their .execute function
     // handle if a block's execute function returns ERROR
-    int execute() {
+    int Execute() {
         if(!executing) return Block.FALSE;
         // TODO: disable moving of blocks while executing
         if(currentExecutingBlockIndex < blocks.size()) {
-            if(blocks.get(currentExecutingBlockIndex).execute(this) == Block.ERROR)  {
+            if(blocks.get(currentExecutingBlockIndex).Execute(this) == Block.ERROR)  {
                 return Block.ERROR;
             }
             currentExecutingBlockIndex++;
@@ -143,21 +142,21 @@ public class CodingArea {
         if(currentExecutingBlockIndex >= blocks.size()) executing = false;
         return Block.TRUE;
     }
+
     //When This block is placed on CodingArea check all blocks in the array
     // or any that is close to This block if it's close enough call snap in place.
-    public void checkBlocksToSnapIn() {
+    public void CheckBlocksToSnapIn() {
         int distanceForSnapIn = 2;
         for(int blockBeingChecked = 0; blockBeingChecked < blocks.size(); blockBeingChecked++){       //for loop through all blocks in array
             if ((blocks.get(blockBeingChecked).position.distFrom(this.blocks.get(draggedBlockIndex).position))  <= distanceForSnapIn  ){                              //if block being checked position is within This block area
-                snapInPlace(blocks.get(blockBeingChecked));
+                SnapInPlace(blocks.get(blockBeingChecked));
                 break;
             }
         }
     }
 
-
     //Get attaching block coordinates and snap This block into it.
-    public void snapInPlace(Block attachingBlock) {
+    public void SnapInPlace(Block attachingBlock) {
 
         //Check which 2 points of attaching block is closer to This block.
         //Subtract the distance of the 2 points with This block and compare which one is less
