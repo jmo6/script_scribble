@@ -26,7 +26,7 @@ public class BitmapAnimation {
 		ended = true;
 	}
 	
-	void draw(Canvas canvas, float x, float y, int millisPerBitmap) {
+	void Draw(Canvas canvas, float x, float y, int millisPerBitmap) {
 		if(startTime == 0) {
 			startTime = System.currentTimeMillis();
 			lastTime = System.currentTimeMillis();

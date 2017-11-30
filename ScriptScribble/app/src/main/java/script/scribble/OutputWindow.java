@@ -42,7 +42,7 @@ public class OutputWindow {
         grid.get(1).set(5, OBSTACLE);
     }
 
-    public void draw(Canvas canvas) {
+    public void Draw(Canvas canvas) {
         canvas.drawRect(outputWindow, greenPaint);
 
         for(int i = 0; i < num_cells; i++) {
@@ -54,6 +54,6 @@ public class OutputWindow {
             }
         }
 
-        character.draw(canvas);
+        character.Draw(canvas);
     }
 }
