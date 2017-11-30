@@ -6,10 +6,9 @@ import android.graphics.Rect;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class OrBlock extends Block {
-    public int lastBlockOrIndex;
-
     public OrBlock() {
         id = Block.OR_BLOCK;
         category = BlockMenu.RELATION_BLOCK;
@@ -31,14 +30,14 @@ public class OrBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         // TODO: make sure the next block is a relation or condition block, if not, return ERROR
-        int status = executeNextBlock(codingArea);
+        int status = ExecuteNextBlock(codingArea);
         if (status == ERROR){
             return Block.ERROR;
         }
         if (status == TRUE){
             return TRUE;
         }
-        status = executeNextBlock(codingArea);
+        status = ExecuteNextBlock(codingArea);
         if (status == ERROR){
             return Block.ERROR;
         }
@@ -47,5 +46,14 @@ public class OrBlock extends Block {
         }
 
         return FALSE;
+    }
+
+    @Override
+    public Block Clone() {
+        OrBlock ret = new OrBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

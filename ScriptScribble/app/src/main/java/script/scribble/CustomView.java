@@ -1,28 +1,16 @@
 package script.scribble;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.content.Context;
 import android.view.Display;
 import android.graphics.Point;
-import android.view.View;
 import android.view.WindowManager;
 import android.graphics.Canvas;
 
-import java.util.ArrayList;
-
 import script.scribble.util.ImageHandler;
 import script.scribble.util.Input;
-import script.scribble.util.Touch;
-import script.scribble.util.Vector2f;
 
 /*
 BlockMenu class
@@ -75,21 +63,23 @@ public class CustomView extends SurfaceView implements Runnable {
         screen_width = size.x;
         screen_height = size.y;
 
-        blockMenu = new BlockMenu();
-        codingArea = new CodingArea();
-        outputWindow = new OutputWindow();
         ImageHandler.loadImages(this.context);
+        codingArea = new CodingArea();
+        blockMenu = new BlockMenu(codingArea);
+        outputWindow = new OutputWindow();
         this.myThread.start();
     }
 
     public void Draw(Canvas canvas) {
-        outputWindow.Draw(canvas);
         codingArea.Draw(canvas);
+        outputWindow.Draw(canvas);
+        codingArea.DrawOverOutput(canvas);
         blockMenu.Draw(canvas);
     }
 
     public void Update() {
-        codingArea.Update(input);
+        blockMenu.Update(input);
+        codingArea.Update(input, blockMenu.blockBar.right);
     }
 
     @Override
@@ -107,7 +97,7 @@ public class CustomView extends SurfaceView implements Runnable {
             /*********************************** Start Update ********************************************/
 
             Update();
-            input.refresh();
+            input.Refresh();
 
             /**************************************** End Update *********************************************/
 
@@ -115,7 +105,7 @@ public class CustomView extends SurfaceView implements Runnable {
             if(canvas == null) {
                 return;
             }
-            //canvas.drawRGB(127, 127, 127);
+//            canvas.drawRGB(127, 127, 127);
 
             /**************************************** Start Draw *********************************************/
 

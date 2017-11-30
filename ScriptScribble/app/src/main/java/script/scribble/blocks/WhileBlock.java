@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class WhileBlock extends Block {
     // this is the index of the last block within the "then" part of this while Block
@@ -33,7 +34,7 @@ public class WhileBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         // TODO: make sure the next block is a relation or condition block, if not, return ERROR
-        int status = executeNextBlock(codingArea);
+        int status = ExecuteNextBlock(codingArea);
         if(status == FALSE) {
             codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
             return FALSE;
@@ -45,11 +46,11 @@ public class WhileBlock extends Block {
         codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
         if(status == TRUE) {
             while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex) {
-                if(executeNextBlock(codingArea) == ERROR) return ERROR;
+                if(ExecuteNextBlock(codingArea) == ERROR) return ERROR;
             }
             // execute the conditions again
             codingArea.currentExecutingBlockIndex = this.index - 1;
-//            status = executeNextBlock(codingArea);
+//            status = ExecuteNextBlock(codingArea);
 //            if(status == FALSE) {
 //                codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
 //                return FALSE;
@@ -59,5 +60,16 @@ public class WhileBlock extends Block {
         }
 
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        WhileBlock ret = new WhileBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.firstBlockInThenIndex = firstBlockInThenIndex;
+        ret.lastBlockInThenIndex = lastBlockInThenIndex;
+        ret.index = index;
+        return ret;
     }
 }

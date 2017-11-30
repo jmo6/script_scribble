@@ -8,10 +8,9 @@ import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.OutputWindow;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class RotateBlock extends Block {
-    public int lastBlockRotateIndex;
-
     private final String LOG_TAG =  "RotateBlock";
 
     public RotateBlock() {
@@ -37,5 +36,14 @@ public class RotateBlock extends Block {
         OutputWindow.character.direction++;
         Log.d(LOG_TAG, "Rotate Block Executed");
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        RotateBlock ret = new RotateBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

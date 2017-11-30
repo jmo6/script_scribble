@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class ElseBlock extends Block {
     public int lastBlockInElse;
@@ -46,9 +47,18 @@ public class ElseBlock extends Block {
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
         codingArea.currentExecutingBlockIndex = firstBlockInElse - 1;
         while(codingArea.currentExecutingBlockIndex != lastBlockInElse) {
-            if(executeNextBlock(codingArea) == ERROR) return ERROR;
+            if(ExecuteNextBlock(codingArea) == ERROR) return ERROR;
         }
 
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        ElseBlock ret = new ElseBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

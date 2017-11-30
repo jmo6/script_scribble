@@ -1,5 +1,6 @@
 package script.scribble.util;
 
+import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -7,6 +8,13 @@ import android.view.View.OnTouchListener;
 import java.util.ArrayList;
 
 public class Input implements OnTouchListener {
+    public static int dragStatus = 0;
+    public static final int DRAGGING_NOTHING                               = 0;
+    public static final int DRAGGING_BLOCK_MENU                            = 1;
+    public static final int DRAGGING_CODING_AREA                           = 2;
+    public static final int DRAGGING_BLOCK_FROM_BLOCK_MENU                 = 3;
+    public static final int DRAGGING_BLOCK_FROM_CODING_AREA                = 4;
+
     private ArrayList<Touch> touches = new ArrayList<Touch>();
     private float minScrollDist;
 
@@ -16,8 +24,9 @@ public class Input implements OnTouchListener {
 
      //Use this method at the start or end of the method or thread that updates
      //the program based on input
-    public void refresh() {
+    public void Refresh() {
         for(int i = 0; i < touches.size(); i++) {
+            if(i == 1) return; // for now, just handle 1 touch
             Touch t = touches.get(i);
             if(t.state == Touch.HELD && Vector2f.dist(t.start, t.current) >= minScrollDist) {
                 t.isSwipe = true;
@@ -28,6 +37,7 @@ public class Input implements OnTouchListener {
             else if(t.state == Touch.RELEASED) {
                 touches.remove(i);
                 i--;
+                Input.dragStatus = Input.DRAGGING_NOTHING;
             }
             t.last = new Vector2f(t.current);
         }
@@ -37,6 +47,16 @@ public class Input implements OnTouchListener {
         for(Touch t : touches) {
             if(t.isPressed()
                     && Rectf.isInRect(t.current, new Rectf(x, y, width, height))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isRectPressed(RectF rect) {
+        for(Touch t : touches) {
+            if(t.isPressed()
+                    && Rectf.isInRect(t.current, new Rectf(rect.left, rect.top, rect.width(), rect.height()))) {
                 return true;
             }
         }
@@ -65,6 +85,15 @@ public class Input implements OnTouchListener {
     public boolean wasRectTouched(float x, float y, float width, float height) {
         for(Touch t : touches) {
             if(Rectf.isInRect(t.last, new Rectf(x, y, width, height))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean wasRectTouched(RectF rect) {
+        for(Touch t : touches) {
+            if(Rectf.isInRect(t.last, new Rectf(rect.left, rect.top, rect.width(), rect.height()))) {
                 return true;
             }
         }

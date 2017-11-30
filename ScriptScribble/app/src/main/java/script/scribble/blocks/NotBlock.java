@@ -6,10 +6,9 @@ import android.graphics.Rect;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class NotBlock extends Block {
-    public int lastBlockNotIndex;
-
     public NotBlock() {
         id = Block.NOT_BLOCK;
         category = BlockMenu.RELATION_BLOCK;
@@ -31,9 +30,18 @@ public class NotBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         // TODO: make sure the next block is a relation or condition block, if not, return ERROR
-        int status = executeNextBlock(codingArea);
+        int status = ExecuteNextBlock(codingArea);
         if(status == ERROR) return ERROR;
         if(status == TRUE) return FALSE;
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        NotBlock ret = new NotBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

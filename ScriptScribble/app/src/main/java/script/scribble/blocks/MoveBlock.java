@@ -9,10 +9,9 @@ import script.scribble.CodingArea;
 import script.scribble.OutputWindow;
 import script.scribble.Character;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class MoveBlock extends Block {
-    public int lastBlockMoveIndex;
-
     private final String LOG_TAG =  "MoveBlock";
 
     public MoveBlock() {
@@ -44,7 +43,20 @@ public class MoveBlock extends Block {
         } else if(OutputWindow.character.direction % 4 == Character.RIGHT) {
             OutputWindow.character.position.x++;
         }
+        if(OutputWindow.character.position.x < 0) OutputWindow.character.position.x = 0;
+        if(OutputWindow.character.position.y < 0) OutputWindow.character.position.y = 0;
+        if(OutputWindow.character.position.x >= OutputWindow.grid.size()) OutputWindow.character.position.x = OutputWindow.grid.size() - 1;
+        if(OutputWindow.character.position.y >= OutputWindow.grid.size()) OutputWindow.character.position.y = OutputWindow.grid.size() - 1;
         Log.d(LOG_TAG, "Move Block Executed");
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        MoveBlock ret = new MoveBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

@@ -1,8 +1,10 @@
 package script.scribble.blocks;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 
 import script.scribble.CodingArea;
+import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
 public abstract class Block {
@@ -49,7 +51,12 @@ public abstract class Block {
 
     public Block(){
         position = new Vector2f();
-        scale = new Vector2f(0.3f, 0.3f);
+        scale = new Vector2f(0.5f, 0.5f);
+    }
+
+    public RectF getImageRect() {
+        return new RectF(position.x, position.y, position.x + ImageHandler.images[id].getWidth() * scale.x,
+                position.y + ImageHandler.images[id].getHeight() * scale.y);
     }
 
     // maybe animations here (block specific)
@@ -62,8 +69,10 @@ public abstract class Block {
     // block specific
     public abstract int Execute(CodingArea codingArea);
 
+    public abstract Block Clone();
+
     // helper functions go below here
-    public int executeNextBlock(CodingArea codingArea) {
+    public int ExecuteNextBlock(CodingArea codingArea) {
         codingArea.currentExecutingBlockIndex++;
         if(codingArea.currentExecutingBlockIndex >= codingArea.blocks.size()) {
             // TODO: set a global error string that we can display to the user

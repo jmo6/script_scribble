@@ -8,6 +8,7 @@ import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.OutputWindow;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class IsRightSpaceOpenBlock extends Block {
     private final String LOG_TAG =  "IsRightSpaceOpenBlock";
@@ -40,5 +41,14 @@ public class IsRightSpaceOpenBlock extends Block {
             return FALSE;
         }
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        IsRightSpaceOpenBlock ret = new IsRightSpaceOpenBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

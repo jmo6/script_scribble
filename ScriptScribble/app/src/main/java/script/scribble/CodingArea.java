@@ -19,6 +19,7 @@ import script.scribble.blocks.RotateBlock;
 import script.scribble.blocks.WhileBlock;
 import script.scribble.util.ImageHandler;
 import script.scribble.util.Input;
+import script.scribble.util.Vector2f;
 
 public class CodingArea {
     public ArrayList<Block> blocks;
@@ -32,14 +33,14 @@ public class CodingArea {
     private final int RUN_BTN_WIDTH = 100;
     private final int RUN_BTN_HEIGHT = 100;
     private final int RUN_BTN_X = CustomView.screen_width - RUN_BTN_WIDTH;
-    private final int RUN_BTN_Y = CustomView.screen_height / 2 - RUN_BTN_HEIGHT;
+    private final int RUN_BTN_Y = CustomView.screen_height / 2;
 
     // Temporary attributes for back button
     Paint blackPaint = new Paint();
     private final int BACK_BTN_WIDTH = 100;
     private final int BACK_BTN_HEIGHT = 100;
     private final int BACK_BTN_X = CustomView.screen_width - BACK_BTN_WIDTH;
-    private final int BACK_BTN_Y = 0;
+    private final int BACK_BTN_Y = CustomView.screen_height / 2 + RUN_BTN_HEIGHT + 20;
 
     public boolean executing = false;
     final long millisPerExecuteStep = 1000;
@@ -53,21 +54,22 @@ public class CodingArea {
     Paint bluePaint = new Paint();
     
     public CodingArea() {
+        draggedBlockIndex = -1;
         blocks = new ArrayList<Block>();
         // debug code
-        blocks.add(new RotateBlock());
-        blocks.add(new RotateBlock());
-        blocks.add(new RotateBlock());
-        blocks.add(new MoveBlock());
-        blocks.add(new RotateBlock());
-        blocks.add(new WhileBlock());
-        ((WhileBlock)blocks.get(5)).firstBlockInThenIndex = 9;
-        ((WhileBlock)blocks.get(5)).lastBlockInThenIndex = 9;
-        ((WhileBlock)blocks.get(5)).index = 5;
-        blocks.add(new AndBlock());
-        blocks.add(new IsRightSpaceOpenBlock());
-        blocks.add(new IsLeftSpaceOpenBlock());
-        blocks.add(new MoveBlock());
+//        blocks.add(new RotateBlock());
+//        blocks.add(new RotateBlock());
+//        blocks.add(new RotateBlock());
+//        blocks.add(new MoveBlock());
+//        blocks.add(new RotateBlock());
+//        blocks.add(new WhileBlock());
+//        ((WhileBlock)blocks.get(5)).firstBlockInThenIndex = 9;
+//        ((WhileBlock)blocks.get(5)).lastBlockInThenIndex = 9;
+//        ((WhileBlock)blocks.get(5)).index = 5;
+//        blocks.add(new AndBlock());
+//        blocks.add(new IsRightSpaceOpenBlock());
+//        blocks.add(new IsLeftSpaceOpenBlock());
+//        blocks.add(new MoveBlock());
 //        Execute();
 
         bluePaint.setARGB(255, 0, 0, 255);
@@ -76,7 +78,7 @@ public class CodingArea {
 
     // handle moving blocks to block menu
     // call execute when play button is pressed
-    void Update(Input input) {
+    void Update(Input input, float blockBarRight) {
         // Look for the RUN button
         // If run button touched then run
         if (input.isRectPressed(RUN_BTN_X, RUN_BTN_Y, RUN_BTN_WIDTH, RUN_BTN_HEIGHT)) {
@@ -91,20 +93,44 @@ public class CodingArea {
         // Look for BACK button
         if(input.isRectPressed(BACK_BTN_X, BACK_BTN_Y,
                 BACK_BTN_WIDTH, BACK_BTN_HEIGHT)){
-            // TODO: mutexes if needed
-            System.out.println("back to main menu");
             CustomView.isRunning = false;
         }
 
-        // block dragging
-        for(int i = 0; i < blocks.size(); i++) {
-            Block b = blocks.get(i);
-            if(input.wasRectTouched(b.position.x, b.position.y,
-                    ImageHandler.images[b.id].getWidth() * b.scale.x,
-                    ImageHandler.images[b.id].getHeight() * b.scale.y)) {
-                // block is touched, move block
-                b.position.x += input.getTouches().get(0).current.x - input.getTouches().get(0).last.x;
-                b.position.y += input.getTouches().get(0).current.y - input.getTouches().get(0).last.y;
+        // get a block to be dragged
+        // TODO: get the block whose center is closest to the touch
+        // TODO: get the actual center of each block or redo the images
+        if(draggedBlockIndex == -1) {
+            for(int i = 0; i < blocks.size(); i++) {
+                Block b = blocks.get(i);
+                if(input.isRectPressed(b.getImageRect()) && (Input.dragStatus == Input.DRAGGING_NOTHING ||
+                        Input.dragStatus == Input.DRAGGING_BLOCK_FROM_CODING_AREA)) {
+                    Input.dragStatus = Input.DRAGGING_BLOCK_FROM_CODING_AREA;
+                    draggedBlockIndex = i;
+                }
+            }
+        }
+        if(draggedBlockIndex != -1) {
+            // move the dragged block
+            Block b = blocks.get(draggedBlockIndex);
+            Vector2f swipeVec = input.getTouches().get(0).current.sub(input.getTouches().get(0).last);
+            b.position = b.position.add(swipeVec);
+            if(input.getTouches().size() > 0 && input.getTouches().get(0).isReleased()) {
+                if(b.position.x + b.getImageRect().width() / 2 <= blockBarRight) {
+                    blocks.remove(draggedBlockIndex);
+                } else {
+                    // TODO: snap into place
+                }
+                draggedBlockIndex = -1;
+            }
+        }
+
+        // scrolling the blocks around in the coding area
+        if(input.wasRectTouched(codingArea) && (Input.dragStatus == Input.DRAGGING_CODING_AREA || Input.dragStatus == Input.DRAGGING_NOTHING)) {
+            Input.dragStatus = Input.DRAGGING_CODING_AREA;
+            Vector2f swipeVec = input.getTouches().get(0).current.sub(input.getTouches().get(0).last);
+
+            for(int i = 0; i < blocks.size(); i++) {
+                blocks.get(i).position = blocks.get(i).position.add(swipeVec);
             }
         }
     }
@@ -117,7 +143,9 @@ public class CodingArea {
         for(int i = 0; i < blocks.size(); i++) {
             blocks.get(i).Draw(canvas);
         }
+    }
 
+    void DrawOverOutput(Canvas canvas) {
         //Temporary run button for Coding Area
         redPaint.setColor(Color.RED);
         canvas.drawRect(RUN_BTN_X, RUN_BTN_Y, RUN_BTN_X + RUN_BTN_WIDTH, RUN_BTN_Y + RUN_BTN_HEIGHT, redPaint);
@@ -138,7 +166,10 @@ public class CodingArea {
             }
             currentExecutingBlockIndex++;
         }
-        if(currentExecutingBlockIndex >= blocks.size()) executing = false;
+        if(currentExecutingBlockIndex >= blocks.size()) {
+            executing = false;
+            currentExecutingBlockIndex = 0;
+        }
         return Block.TRUE;
     }
 

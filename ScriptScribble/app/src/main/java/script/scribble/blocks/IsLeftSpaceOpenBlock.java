@@ -7,6 +7,7 @@ import android.util.Log;
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
 import script.scribble.util.ImageHandler;
+import script.scribble.util.Vector2f;
 
 public class IsLeftSpaceOpenBlock extends Block {
     private final String LOG_TAG =  "IsLeftSpaceOpenBlock";
@@ -33,5 +34,14 @@ public class IsLeftSpaceOpenBlock extends Block {
     public int Execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Left Space Open Block Executed");
         return TRUE;
+    }
+
+    @Override
+    public Block Clone() {
+        IsLeftSpaceOpenBlock ret = new IsLeftSpaceOpenBlock();
+        ret.position = new Vector2f(position);
+        ret.scale = new Vector2f(scale);
+        ret.index = index;
+        return ret;
     }
 }

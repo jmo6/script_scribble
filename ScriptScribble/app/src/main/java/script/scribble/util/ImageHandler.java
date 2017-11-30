@@ -10,24 +10,21 @@ import script.scribble.R;
 import script.scribble.blocks.Block;
 
 public class ImageHandler {
+    public static final int SNEK = Block.NUM_BLOCKS;
+    public static final int ROCK = Block.NUM_BLOCKS + 1;
+    public static final int FLAG = Block.NUM_BLOCKS + 2;
     public static Bitmap[] images;
 
     public static void loadImages(Context context) {
-        images = new Bitmap[Block.NUM_BLOCKS];
+        final int numExtraImages = 3;
+        images = new Bitmap[Block.NUM_BLOCKS + numExtraImages];
         // here we load all our images we want and fill the images array
 
-        // NEED TO DO::
-        // Put Images under res->drawable
-        // replace new images in: R.drawable.image_name
-        /*
-            Errors that might occur::
-                ImageHandler is a non-activity class so passing context might cause mem leaks.
-                Context is being passed from CustomView.java
-         */
         images[Block.MOVE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.move_right);
         images[Block.ROTATE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.rotate);
         images[Block.IF_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.if_block);
-        images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+        // TODO: get image for else block
+        images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.not_block);
         images[Block.WHILE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.while_block);
         images[Block.IS_RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.right_space_open);
         images[Block.IS_LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.left_space_open);
@@ -38,5 +35,9 @@ public class ImageHandler {
         images[Block.NOT_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.not_block);
         images[Block.RUN_PRESSED_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
         images[Block.BUTTON_PRESSED_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.condition_block);
+
+        images[SNEK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.snek);
+        images[ROCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.rock_chan);
+        images[FLAG] = BitmapFactory.decodeResource(context.getResources(), R.drawable.flagpole);
     }
 }
