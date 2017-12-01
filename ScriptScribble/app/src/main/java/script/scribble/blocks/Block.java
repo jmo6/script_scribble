@@ -40,6 +40,30 @@ public abstract class Block {
 
     public static final int NUM_BLOCKS =                14;
 
+    // SNAPPEE1 is the coordinate of the top left of the first slot where a block would snap into another block
+    public static final int SNAPPEE1_X = 63;
+    public static final int SNAPPEE1_Y = 40;
+    // SNAPPEE1_TOP is the coordinate of the top left of a block that can have another block snap into it
+    public static final int SNAPPEE1_TOP_X = 20;
+    public static final int SNAPPEE1_TOP_Y = -15;
+    // SNAPPEE1_BOTTOM is the coordinate of the bottom left of a block that can have only 1 block snap into it
+    public static final int SNAPPEE1_BOTTOM_X = 20;
+    public static final int SNAPPEE1_BOTTOM_Y = 140;
+
+    // SNAPPEE2 is the coordinate of the top left of the second slot where a block would snap into another block
+    public static final int SNAPPEE2_X = 63;
+    public static final int SNAPPEE2_Y = 151;
+    // SNAPPEE2_BOTTOM is the coordinate of the bottom left of a block that can have 2 blocks snap into it
+    public static final int SNAPPEE2_BOTTOM_X = 20;
+    public static final int SNAPPEE2_BOTTOM_Y = 258;
+
+    // SNAPPER is the coordinate of the top left of a block that cannot have other blocks snap into it
+    public static final int SNAPPER_X = 63;
+    public static final int SNAPPER_Y = 40;
+    // SNAPPER is the coordinate of the bottom left of a block that cannot have other blocks snap into it
+    public static final int SNAPPER_BOTTOM_X = 63;
+    public static final int SNAPPER_BOTTOM_Y = 90;
+
     // this is the index of where this block is in the CodingArea.blocks array
     public int index;
     public int id;

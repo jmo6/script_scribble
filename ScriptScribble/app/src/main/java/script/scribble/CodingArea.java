@@ -118,7 +118,7 @@ public class CodingArea {
                 if(b.position.x + b.getImageRect().width() / 2 <= blockBarRight) {
                     blocks.remove(draggedBlockIndex);
                 } else {
-                    // TODO: snap into place
+                    SnapInPlace();
                 }
                 draggedBlockIndex = -1;
             }
@@ -179,33 +179,133 @@ public class CodingArea {
         int distanceForSnapIn = 2;
         for(int blockBeingChecked = 0; blockBeingChecked < blocks.size(); blockBeingChecked++){       //for loop through all blocks in array
             if ((blocks.get(blockBeingChecked).position.distFrom(this.blocks.get(draggedBlockIndex).position))  <= distanceForSnapIn  ){                              //if block being checked position is within This block area
-                SnapInPlace(blocks.get(blockBeingChecked));
+                SnapInPlace();
                 break;
             }
         }
     }
 
-    //Get attaching block coordinates and snap This block into it.
-    public void SnapInPlace(Block attachingBlock) {
+    boolean isBlockSnappee1(Block b) {
+        if(b.id == Block.ELSE_BLOCK) return true;
+        if(b.id == Block.NOT_BLOCK) return true;
+        return false;
+    }
 
-        //Check which 2 points of attaching block is closer to This block.
-        //Subtract the distance of the 2 points with This block and compare which one is less
-        //and move thisBlock to that point
+    boolean isBlockSnappee2(Block b) {
+        if(isBlockSnappee1(b)) return false;
+        if(isBlockSnapper(b)) return false;
+        return true;
+    }
 
+    boolean isBlockSnapper(Block b) {
+        if(b.category == BlockMenu.STATEMENT_BLOCK) return true;
+        if(b.category == BlockMenu.CONDITION_BLOCK) return true;
+        return false;
+    }
 
-        /*
-        int distanceOfTopLeftCornerToTopIndentionPosition = blocks.get(attachingBlock).position
-
-        int distanceToTopIndention = (blocks.get(attachingBlock).position.distFrom(this.blocks.get(draggedBlockIndex).position) ;
-        int distanceToBottomIndention = (blocks.get(attachingBlock).position.distFrom(this.blocks.get(draggedBlockIndex).position);
-
-        if(distanceToTopIndention < distanceToBottomIndention){
-            thisBlockPosition = attachingBlockTopIndentPosition;
+    Vector2f getTopLeft(Block b) {
+        Vector2f toSnapInTopLeft = new Vector2f();
+        if(isBlockSnappee1(b)) {
+            toSnapInTopLeft = new Vector2f(b.position.x + Block.SNAPPEE1_TOP_X, b.position.y + Block.SNAPPEE1_TOP_Y);
+        } else if(isBlockSnappee2(b)) {
+            toSnapInTopLeft = new Vector2f(b.position.x + Block.SNAPPEE1_TOP_X, b.position.y + Block.SNAPPEE1_TOP_Y);
+        } else {
+            toSnapInTopLeft = new Vector2f(b.position.x + Block.SNAPPER_X, b.position.y + Block.SNAPPER_Y);
         }
-        else(){
-            thisBlockPosition = attachingBlockBottomIndentPosition;
+        return toSnapInTopLeft;
+    }
 
-        */
+    Vector2f getBottomLeft(Block b) {
+        Vector2f toSnapInBottomLeft = new Vector2f();
+        if(isBlockSnappee1(b)) {
+            toSnapInBottomLeft = new Vector2f(b.position.x + Block.SNAPPEE1_BOTTOM_X, b.position.y + Block.SNAPPEE1_BOTTOM_Y);
+        } else if(isBlockSnappee2(b)) {
+            toSnapInBottomLeft = new Vector2f(b.position.x + Block.SNAPPEE2_BOTTOM_X, b.position.y + Block.SNAPPEE2_BOTTOM_Y);
+        } else {
+            toSnapInBottomLeft = new Vector2f(b.position.x + Block.SNAPPER_BOTTOM_X, b.position.y + Block.SNAPPER_BOTTOM_Y);
+        }
+        return toSnapInBottomLeft;
+    }
 
+    //Get attaching block coordinates and snap This block into it.
+    public void SnapInPlace() {
+        if(blocks.size() == 0) return; // don't snap if this is the first block
+        Block toSnapIn = blocks.get(draggedBlockIndex);
+        Vector2f toSnapInBottomLeft = getBottomLeft(toSnapIn);
+        Vector2f toSnapInTopLeft = getTopLeft(toSnapIn);
+
+        int blockToSnap1IntoIndex = 0;
+        int blockToSnap2IntoIndex = 0;
+        int blockToSnapAboveIndex = 0;
+        int blockToSnapBelowIndex = 0;
+        Vector2f blockToSnap1IntoDist = new Vector2f(99999999, 99999999);
+        Vector2f blockToSnap2IntoDist = new Vector2f(99999999, 99999999);
+        Vector2f blockToSnapAboveDist = new Vector2f(99999999, 99999999);
+        Vector2f blockToSnapBelowDist = new Vector2f(99999999, 99999999);
+
+//        Vector2f blockToSnap1IntoDist2 = new Vector2f(99999999, 99999999);
+//        Vector2f blockToSnap2IntoDist2 = new Vector2f(99999999, 99999999);
+//        Vector2f blockToSnapAboveDist2 = new Vector2f(99999999, 99999999);
+//        Vector2f blockToSnapBelowDist2 = new Vector2f(99999999, 99999999);
+
+        // check if we can snap onto a block
+        for(int i = 0; i < blocks.size(); i++) {
+            if(i == draggedBlockIndex) continue;
+            Block b = blocks.get(i);
+            // check if we can snap into this block's first slot
+            if(isBlockSnappee1(b) || isBlockSnappee2(b)) {
+                Vector2f snappee1 = new Vector2f(b.position.x + Block.SNAPPEE1_X, b.position.y + Block.SNAPPEE1_Y);
+                Vector2f snap1IntoDist = snappee1.sub(toSnapInTopLeft);
+                if(snap1IntoDist.length() < blockToSnap1IntoDist.length()) {
+                    blockToSnap1IntoIndex = i;
+                    blockToSnap1IntoDist = snap1IntoDist;
+//                    blockToSnap1IntoDist2 = b.position;
+                }
+            }
+            // check if we can snap into this block's second slot
+            if(isBlockSnappee2(b)) {
+                Vector2f snappee2 = new Vector2f(b.position.x + Block.SNAPPEE2_X, b.position.y + Block.SNAPPEE2_Y);
+                Vector2f snap2IntoDist = snappee2.sub(toSnapInTopLeft);
+                if(snap2IntoDist.length() < blockToSnap2IntoDist.length()) {
+                    blockToSnap2IntoIndex = i;
+                    blockToSnap2IntoDist = snap2IntoDist;
+//                    blockToSnap2IntoDist2 = b.position;
+                }
+            }
+            // check if we can snap above this
+            Vector2f snapAboveDist = getTopLeft(b).sub(toSnapInBottomLeft);
+            if(snapAboveDist.length() < blockToSnapAboveDist.length()) {
+                blockToSnapAboveIndex = i;
+                blockToSnapAboveDist = snapAboveDist;
+//                blockToSnapAboveDist2 = b.position;
+            }
+            // check if we can snap below this block
+            Vector2f snapBelowDist = getBottomLeft(b).sub(toSnapInTopLeft);
+            if(snapBelowDist.length() < blockToSnapBelowDist.length()) {
+                blockToSnapBelowIndex = i;
+                blockToSnapBelowDist = snapBelowDist;
+//                blockToSnapBelowDist2 = b.position;
+            }
+        }
+        if(blockToSnap1IntoDist.length() < blockToSnap2IntoDist.length() &&
+                blockToSnap1IntoDist.length() < blockToSnapAboveDist.length() &&
+                blockToSnap1IntoDist.length() < blockToSnapBelowDist.length()) {
+//            System.out.println("snap1: (" + (toSnapIn.position.x - blockToSnap1IntoDist2.x) + ", " + (toSnapIn.position.y - blockToSnap1IntoDist2.y) + ")");
+            toSnapIn.position = toSnapIn.position.add(blockToSnap1IntoDist);
+            // TODO: reflect snapping in blocks array
+        } else if(blockToSnap2IntoDist.length() < blockToSnapAboveDist.length() &&
+                blockToSnap2IntoDist.length() < blockToSnapBelowDist.length()) {
+//            System.out.println("snap2: (" + (toSnapIn.position.x - blockToSnap2IntoDist2.x) + ", " + (toSnapIn.position.y - blockToSnap2IntoDist2.y) + ")");
+            toSnapIn.position = toSnapIn.position.add(blockToSnap2IntoDist);
+            // TODO: reflect snapping in blocks array
+        } else if(blockToSnapAboveDist.length() < blockToSnapBelowDist.length()) {
+//            System.out.println("above: (" + (toSnapIn.position.x - blockToSnapAboveDist2.x) + ", " + (toSnapIn.position.y - blockToSnapAboveDist2.y) + ")");
+            toSnapIn.position = toSnapIn.position.add(blockToSnapAboveDist);
+            // TODO: reflect snapping in blocks array
+        } else {
+//            System.out.println("below: (" + (toSnapIn.position.x - blockToSnapBelowDist2.x) + ", " + (toSnapIn.position.y - blockToSnapBelowDist2.y) + ")");
+            toSnapIn.position = toSnapIn.position.add(blockToSnapBelowDist);
+            // TODO: reflect snapping in blocks array
+        }
     }
 }

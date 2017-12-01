@@ -137,8 +137,13 @@ public class BlockMenu {
         if(draggedBlock != null && input.getTouches().size() > 0 && input.getTouches().get(0).isReleased()) {
             if(draggedBlock.position.x + draggedBlock.getImageRect().width() / 2 > blockBar.right &&
                     draggedBlock.position.y + draggedBlock.getImageRect().height() / 2 > CustomView.screen_height / 2) {
-                // TODO: snap into place
                 codingArea.blocks.add(draggedBlock);
+                // snap into place
+                if(codingArea.blocks.size() != 1) {
+                    codingArea.draggedBlockIndex = codingArea.blocks.size() - 1;
+                    codingArea.SnapInPlace();
+                    codingArea.draggedBlockIndex = -1;
+                }
             }
             draggedBlock = null;
         }

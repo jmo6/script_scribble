@@ -1,0 +1,7 @@
+#Wed Oct 18 19:03:42 PDT 2017
+base.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_be472d53269c87e3fe32bb5fdc629d67b3f45c74
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b27f7618d1e1b8b72a92c2f8551d3ed2ea67d156/classes.dex
+base.1=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b27f7618d1e1b8b72a92c2f8551d3ed2ea67d156
+file.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_be472d53269c87e3fe32bb5fdc629d67b3f45c74/classes.dex
