@@ -13,10 +13,11 @@ public class ImageHandler {
     public static final int SNEK = Block.NUM_BLOCKS;
     public static final int ROCK = Block.NUM_BLOCKS + 1;
     public static final int FLAG = Block.NUM_BLOCKS + 2;
+    public static final int LOGO = Block.NUM_BLOCKS + 3;
     public static Bitmap[] images;
 
     public static void loadImages(Context context) {
-        final int numExtraImages = 3;
+        final int numExtraImages = 4;
         images = new Bitmap[Block.NUM_BLOCKS + numExtraImages];
         // here we load all our images we want and fill the images array
 
@@ -24,7 +25,7 @@ public class ImageHandler {
         images[Block.ROTATE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.rotate);
         images[Block.IF_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.if_block);
         // TODO: get image for else block
-        images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.not_block);
+        images[Block.ELSE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.else_block);
         images[Block.WHILE_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.while_block);
         images[Block.IS_RIGHT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.right_space_open);
         images[Block.IS_LEFT_SPACE_OPEN_BLOCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.left_space_open);
@@ -39,5 +40,6 @@ public class ImageHandler {
         images[SNEK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.snek);
         images[ROCK] = BitmapFactory.decodeResource(context.getResources(), R.drawable.rock_chan);
         images[FLAG] = BitmapFactory.decodeResource(context.getResources(), R.drawable.flagpole);
+        images[LOGO] = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo_sama);
     }
 }
