@@ -19,13 +19,13 @@ public class MainMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         //Remove title bar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //Remove notification bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
     }
 
