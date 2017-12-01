@@ -47,6 +47,10 @@ public class MoveBlock extends Block {
         if(OutputWindow.character.position.y < 0) OutputWindow.character.position.y = 0;
         if(OutputWindow.character.position.x >= OutputWindow.grid.size()) OutputWindow.character.position.x = OutputWindow.grid.size() - 1;
         if(OutputWindow.character.position.y >= OutputWindow.grid.size()) OutputWindow.character.position.y = OutputWindow.grid.size() - 1;
+
+        if(OutputWindow.grid.get((int)OutputWindow.character.position.x).get((int)OutputWindow.character.position.y) == OutputWindow.GOAL) {
+            // this is the end for you Anakin, I have the high ground
+        }
         Log.d(LOG_TAG, "Move Block Executed");
         return TRUE;
     }
