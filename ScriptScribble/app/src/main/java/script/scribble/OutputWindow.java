@@ -20,7 +20,7 @@ public class OutputWindow {
 
     public static ArrayList<ArrayList<Integer>> grid;
     public static Character character;
-    int num_cells = 11;
+    static int num_cells = 11;
     int grid_cell_width = CustomView.screen_width / num_cells;
     int grid_cell_height = (CustomView.screen_height / 2) / num_cells;
     public Vector2f scale = new Vector2f(0.15f, 0.15f);
@@ -35,41 +35,10 @@ public class OutputWindow {
 
     public OutputWindow() {
         grid = new ArrayList<>();
-        for(int i = 0; i < num_cells; i++) {
-            grid.add(new ArrayList<Integer>());
-            for(int j = 0; j < num_cells; j++) {
-                grid.get(i).add(EMPTY);
-            }
-        }
-
         character = new Character(grid_cell_width, grid_cell_height);
-        character.position.x = num_cells / 2;
-        character.position.y = num_cells / 2;
+        Reset();
         greenPaint.setColor(Color.GREEN);
         blackPaint.setColor(Color.BLACK);
-
-        // TODO: randomly generate obstacles that allow the user to still make it to the flag pole
-        double goalX = Math.random() * num_cells / 2.0;
-        double goalY = Math.random() * num_cells / 2.0;
-
-        if(goalX >= num_cells / 4.0) {
-            goalX += num_cells / 2.0;
-        }
-        if(goalY >= num_cells / 4.0) {
-            goalY += num_cells / 2.0;
-        }
-
-        grid.get((int) goalX).set((int) goalY, GOAL);
-
-        for(int i = 0; i < grid.size(); i++) {
-            if(i == num_cells / 2) continue;; // no obstacles on player x
-            for(int j = 0; j < grid.get(i).size(); j++) {
-                if(j == (int) goalY) continue; // no obstacles on goal y
-                if(Math.random() > 0.5) {
-                    grid.get(i).set(j, OBSTACLE);
-                }
-            }
-        }
     }
 
     public void Draw(Canvas canvas) {
@@ -100,5 +69,41 @@ public class OutputWindow {
         }
 
         character.Draw(canvas);
+    }
+
+    //
+
+    public static void Reset() {
+        for(int i = 0; i < num_cells; i++) {
+            grid.add(new ArrayList<Integer>());
+            for(int j = 0; j < num_cells; j++) {
+                grid.get(i).add(EMPTY);
+            }
+        }
+
+        character.position.x = num_cells / 2;
+        character.position.y = num_cells / 2;
+
+        double goalX = Math.random() * num_cells / 2.0;
+        double goalY = Math.random() * num_cells / 2.0;
+
+            if(goalX >= num_cells / 4.0) {
+            goalX += num_cells / 2.0;
+        }
+            if(goalY >= num_cells / 4.0) {
+            goalY += num_cells / 2.0;
+        }
+
+            grid.get((int) goalX).set((int) goalY, GOAL);
+
+            for(int i = 0; i < grid.size(); i++) {
+            if(i == num_cells / 2) continue;; // no obstacles on player x
+            for(int j = 0; j < grid.get(i).size(); j++) {
+                if(j == (int) goalY) continue; // no obstacles on goal y
+                if(Math.random() > 0.5) {
+                    grid.get(i).set(j, OBSTACLE);
+                }
+            }
+        }
     }
 }

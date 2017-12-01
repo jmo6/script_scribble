@@ -50,6 +50,7 @@ public class MoveBlock extends Block {
 
         if(OutputWindow.grid.get((int)OutputWindow.character.position.x).get((int)OutputWindow.character.position.y) == OutputWindow.GOAL) {
             // this is the end for you Anakin, I have the high ground
+            OutputWindow.Reset();
         }
         Log.d(LOG_TAG, "Move Block Executed");
         return TRUE;
