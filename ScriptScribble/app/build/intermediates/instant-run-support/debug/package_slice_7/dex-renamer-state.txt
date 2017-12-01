@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Thu Nov 30 21:43:55 PST 2017
 base.0=/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/7
 path.0=classes.dex
+=======
+#Thu Nov 30 21:27:36 PST 2017
+base.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/7
+>>>>>>> 1da062977c46b67bf92c5a20ba6cad8fba61f03f
 renamed.0=classes.dex

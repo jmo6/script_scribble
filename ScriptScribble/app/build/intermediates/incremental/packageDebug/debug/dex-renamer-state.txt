@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Thu Nov 30 21:51:49 PST 2017
 path.1=classes.dex
 path.0=classes.dex
@@ -17,3 +18,9 @@ path.5=classes.dex
 path.4=classes.dex
 path.3=classes.dex
 path.2=classes.dex
+=======
+#Thu Nov 30 21:30:26 PST 2017
+base.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/18
+renamed.0=classes.dex
+file.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/18/classes.dex
+>>>>>>> 1da062977c46b67bf92c5a20ba6cad8fba61f03f
