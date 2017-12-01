@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 
 import script.scribble.util.Input;
@@ -17,6 +18,7 @@ public class MainMenu extends AppCompatActivity {
     CustomView myCustomView = null;
     Input input = new Input(25);
 
+    private final String changeToFreeMd = "Free Mode";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +29,11 @@ public class MainMenu extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main_menu);
+
     }
 
     public void gotoFreeMode (View view){
+        Toast.makeText(MainMenu.this, changeToFreeMd, Toast.LENGTH_SHORT).show();
         myCustomView = new CustomView(this, input, this);
         myCustomView.setOnTouchListener(input);
         setContentView(myCustomView);

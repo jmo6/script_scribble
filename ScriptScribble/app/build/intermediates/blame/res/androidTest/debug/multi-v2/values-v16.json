@@ -1,6 +1,40 @@
 {
     "logs": [
         {
+            "outputFile": "/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/b8cfb90d2f8d344259147c1304ca6abe/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/1209ed0c8c22847f094dbcdfc3be7fac/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
