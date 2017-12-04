@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "outputFile": "C:\\Users\\noxide\\Desktop\\noxsfiles\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "/Users/noxide/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/21942866f8600419a564830c86ca6021/res/values-port/values-port.xml",
+                    "source": "C:\\Users\\noxide\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\21942866f8600419a564830c86ca6021\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,25 @@
             ]
         },
         {
-            "outputFile": "/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "outputFile": "C:\\Users\\Jordan\\Desktop\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/1209ed0c8c22847f094dbcdfc3be7fac/res/values-port/values-port.xml",
+                    "source": "C:\\Users\\Jordan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\1209ed0c8c22847f094dbcdfc3be7fac\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\karen\\AndroidStudioProjects\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\karen\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\7512187cc8dd253788b6742a18886cc7\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

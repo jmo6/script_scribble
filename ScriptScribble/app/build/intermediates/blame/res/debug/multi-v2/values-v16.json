@@ -1,10 +1,44 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "C:\\Users\\karen\\AndroidStudioProjects\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/noxide/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1cd8cc6e40786d1988074b1fd0b7cd47/res/values-v16/values-v16.xml",
+                    "source": "C:\\Users\\karen\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\7512187cc8dd253788b6742a18886cc7\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\karen\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\b9a1b179cccb414df22c7a4e5e269ac1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Jordan\\Desktop\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jordan\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\b8cfb90d2f8d344259147c1304ca6abe\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +48,7 @@
                     }
                 },
                 {
-                    "source": "/Users/noxide/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/21942866f8600419a564830c86ca6021/res/values-v16/values-v16.xml",
+                    "source": "C:\\Users\\Jordan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\1209ed0c8c22847f094dbcdfc3be7fac\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -35,20 +69,10 @@
             ]
         },
         {
-            "outputFile": "/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "C:\\Users\\noxide\\Desktop\\noxsfiles\\script_scribble\\ScriptScribble\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/b8cfb90d2f8d344259147c1304ca6abe/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/1209ed0c8c22847f094dbcdfc3be7fac/res/values-v16/values-v16.xml",
+                    "source": "C:\\Users\\noxide\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\21942866f8600419a564830c86ca6021\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -64,6 +88,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\noxide\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\1cd8cc6e40786d1988074b1fd0b7cd47\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]
