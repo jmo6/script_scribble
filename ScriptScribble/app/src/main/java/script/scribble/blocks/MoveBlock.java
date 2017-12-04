@@ -48,9 +48,15 @@ public class MoveBlock extends Block {
         if(OutputWindow.character.position.x >= OutputWindow.grid.size()) OutputWindow.character.position.x = OutputWindow.grid.size() - 1;
         if(OutputWindow.character.position.y >= OutputWindow.grid.size()) OutputWindow.character.position.y = OutputWindow.grid.size() - 1;
 
+        // check if we're on an obstacle
+        if(OutputWindow.grid.get((int)OutputWindow.character.position.x).get((int)OutputWindow.character.position.y) == OutputWindow.OBSTACLE) {
+            OutputWindow.Reset();
+        }
+        // check if we're on the goal
         if(OutputWindow.grid.get((int)OutputWindow.character.position.x).get((int)OutputWindow.character.position.y) == OutputWindow.GOAL) {
             // this is the end for you Anakin, I have the high ground
             OutputWindow.Reset();
+            System.out.println("YOU REACHED THE GOAL!");
         }
         Log.d(LOG_TAG, "Move Block Executed");
         return TRUE;

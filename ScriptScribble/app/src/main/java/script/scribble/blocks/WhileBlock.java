@@ -9,10 +9,6 @@ import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
 public class WhileBlock extends Block {
-    // this is the index of the last block within the "then" part of this while Block
-    public int firstBlockInThenIndex;
-    public int lastBlockInThenIndex;
-
     public WhileBlock() {
         id = Block.WHILE_BLOCK;
         category = BlockMenu.CONTROL_BLOCK;

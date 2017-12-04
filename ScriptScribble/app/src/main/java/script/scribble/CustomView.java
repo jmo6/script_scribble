@@ -66,7 +66,7 @@ public class CustomView extends SurfaceView implements Runnable {
         ImageHandler.loadImages(this.context);
         codingArea = new CodingArea();
         blockMenu = new BlockMenu(codingArea);
-        outputWindow = new OutputWindow();
+        outputWindow = new OutputWindow(codingArea);
         this.myThread.start();
     }
 

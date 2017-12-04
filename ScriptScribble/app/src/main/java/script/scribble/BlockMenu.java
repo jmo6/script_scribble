@@ -175,8 +175,11 @@ public class BlockMenu {
         canvas.drawRect(categoryBar, cyanPaint);
 
         // draw category buttons
+        Rect src = new Rect(0, 0, ImageHandler.images[ImageHandler.STATEMENT].getWidth(),
+                ImageHandler.images[ImageHandler.STATEMENT].getHeight());
         for(int i = 0; i < NUM_CATEGORIES; i++) {
-            canvas.drawRect(categoryButtons.get(i), magentaPaint);
+            canvas.drawBitmap(ImageHandler.images[ImageHandler.STATEMENT + i], src, categoryButtons.get(i), null);
+//            canvas.drawRect(categoryButtons.get(i), magentaPaint);
         }
 
         // draw available blocks in block menu

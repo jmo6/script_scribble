@@ -1,4 +1,4 @@
-#Thu Nov 30 21:43:55 PST 2017
-base.0=/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/0
+#Sat Dec 02 16:08:33 PST 2017
+base.0=/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/transforms/dexMerger/debug/1
 path.0=classes.dex
 renamed.0=classes.dex

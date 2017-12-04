@@ -9,9 +9,6 @@ import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
 public class ElseBlock extends Block {
-    public int lastBlockInElse;
-    public int firstBlockInElse;
-
     public ElseBlock() {
         id = Block.ELSE_BLOCK;
         category = BlockMenu.CONTROL_BLOCK;
@@ -41,12 +38,12 @@ public class ElseBlock extends Block {
             status = TRUE;
         }
         if(status == FALSE) {
-            codingArea.currentExecutingBlockIndex = lastBlockInElse + 1;
+            codingArea.currentExecutingBlockIndex = lastBlockInThenIndex + 1;
             return FALSE;
         }
         // if it hasn't returned yet, it must be TRUE, so execute the stuff within the THEN
-        codingArea.currentExecutingBlockIndex = firstBlockInElse - 1;
-        while(codingArea.currentExecutingBlockIndex != lastBlockInElse) {
+        codingArea.currentExecutingBlockIndex = firstBlockInThenIndex - 1;
+        while(codingArea.currentExecutingBlockIndex != lastBlockInThenIndex) {
             if(ExecuteNextBlock(codingArea) == ERROR) return ERROR;
         }
 

@@ -32,9 +32,17 @@ public class OutputWindow {
             CustomView.screen_height / 2);
     Paint greenPaint = new Paint();
     Paint blackPaint = new Paint();
+    public static CodingArea codingArea;
 
-    public OutputWindow() {
+    public OutputWindow(CodingArea codingArea) {
+        this.codingArea = codingArea;
         grid = new ArrayList<>();
+        for(int i = 0; i < num_cells; i++) {
+            grid.add(new ArrayList<Integer>());
+            for(int j = 0; j < num_cells; j++) {
+                grid.get(i).add(EMPTY);
+            }
+        }
         character = new Character(grid_cell_width, grid_cell_height);
         Reset();
         greenPaint.setColor(Color.GREEN);
@@ -74,29 +82,32 @@ public class OutputWindow {
     //
 
     public static void Reset() {
+        codingArea.currentExecutingBlockIndex = 0;
+        codingArea.executing = false;
+
         for(int i = 0; i < num_cells; i++) {
-            grid.add(new ArrayList<Integer>());
             for(int j = 0; j < num_cells; j++) {
-                grid.get(i).add(EMPTY);
+                grid.get(i).set(j, EMPTY);
             }
         }
 
         character.position.x = num_cells / 2;
         character.position.y = num_cells / 2;
+        character.direction = Character.LEFT;
 
         double goalX = Math.random() * num_cells / 2.0;
         double goalY = Math.random() * num_cells / 2.0;
 
-            if(goalX >= num_cells / 4.0) {
+        if(goalX >= num_cells / 4.0) {
             goalX += num_cells / 2.0;
         }
-            if(goalY >= num_cells / 4.0) {
+        if(goalY >= num_cells / 4.0) {
             goalY += num_cells / 2.0;
         }
 
-            grid.get((int) goalX).set((int) goalY, GOAL);
+        grid.get((int) goalX).set((int) goalY, GOAL);
 
-            for(int i = 0; i < grid.size(); i++) {
+        for(int i = 0; i < grid.size(); i++) {
             if(i == num_cells / 2) continue;; // no obstacles on player x
             for(int j = 0; j < grid.get(i).size(); j++) {
                 if(j == (int) goalY) continue; // no obstacles on goal y

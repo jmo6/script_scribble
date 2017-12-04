@@ -1,26 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
-            "map": [
-                {
-                    "source": "/Users/Jordan/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/1209ed0c8c22847f094dbcdfc3be7fac/res/values-v22/values-v22.xml",
-                    "from": {
-                        "startLines": "2,3,4,9",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,130,217,553",
-                        "endLines": "2,3,8,13",
-                        "endColumns": "74,86,12,12",
-                        "endOffsets": "125,212,548,896"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/noxide/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/21942866f8600419a564830c86ca6021/res/values-v22/values-v22.xml",
+                    "source": "/Users/noxide/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/3da9681fee18121149ff6f8c45fb8d11/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

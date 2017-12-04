@@ -1,135 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="25"
+    api-level="26"
     build-mode="COLD"
-    density="xxhdpi"
+    density="420dpi"
     format="10"
-<<<<<<< HEAD
+    ir-eligibility="FIELD_ADDED"
     plugin-version="3.0.1"
-    timestamp="1512107504019"
-    token="-6902541413482561505"
-=======
-    ir-eligibility="COMPATIBLE"
-    plugin-version="3.0.0"
-    timestamp="1512106055267"
+    timestamp="1512345445804"
     token="4766309047372398666"
->>>>>>> 1da062977c46b67bf92c5a20ba6cad8fba61f03f
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="82" />
+        duration="779" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="32" />
+        duration="51" />
     <task
         name="verifier"
-        duration="1" />
+        duration="4" />
 
     <artifact
-<<<<<<< HEAD
-        location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/outputs/apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
-=======
         location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
         type="SPLIT" />
->>>>>>> 1da062977c46b67bf92c5a20ba6cad8fba61f03f
 
     <build
         build-mode="FULL"
-        timestamp="1512106998114"
+        timestamp="1512107825480"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/outputs/apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1512107504019"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-<<<<<<< HEAD
-            location="/Users/Jordan/Desktop/script_scribble/ScriptScribble/app/build/outputs/apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
-=======
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
         <artifact
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1512103214256"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1512104500770"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/outputs/apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1512106055267"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1512259710925"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="FIELD_ADDED"
+        timestamp="1512345445804"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/noxide/Desktop/noxsfiles/script_scribble/ScriptScribble/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
->>>>>>> 1da062977c46b67bf92c5a20ba6cad8fba61f03f
     </build>
 
 </instant-run>

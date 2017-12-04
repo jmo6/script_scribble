@@ -70,8 +70,8 @@ public abstract class Block {
     public int category;
     public Vector2f position;
     public Vector2f scale;
-    // drawingState is 0 when in BlockMenu, 1 when dragged, 2 when in CodingArea
-    public int drawingState;
+    public int firstBlockInThenIndex;
+    public int lastBlockInThenIndex;
 
     public Block(){
         position = new Vector2f();

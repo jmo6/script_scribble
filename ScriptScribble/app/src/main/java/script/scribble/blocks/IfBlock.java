@@ -9,10 +9,6 @@ import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
 public class IfBlock extends Block {
-    // this is the index of the last block within the "then" part of this while Block
-    public int firstBlockInThenIndex;
-    public int lastBlockInThenIndex;
-
     public IfBlock() {
         super();
         id = Block.IF_BLOCK;

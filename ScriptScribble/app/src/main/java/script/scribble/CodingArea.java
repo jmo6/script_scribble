@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.media.Image;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -30,17 +32,17 @@ public class CodingArea {
     // Temporary Attributes for run button
     Paint redPaint = new Paint();
     private final String CODING_AREA = "BACK_BUTTON EXECUTED";
-    private final int RUN_BTN_WIDTH = 100;
-    private final int RUN_BTN_HEIGHT = 100;
-    private final int RUN_BTN_X = CustomView.screen_width - RUN_BTN_WIDTH;
-    private final int RUN_BTN_Y = CustomView.screen_height / 2;
+    RectF run_btn_rect = new RectF(
+            CustomView.screen_width - 150, CustomView.screen_height / 2,
+            CustomView.screen_width + 40, CustomView.screen_height / 2 + 100 + 50
+    );
 
     // Temporary attributes for back button
     Paint blackPaint = new Paint();
-    private final int BACK_BTN_WIDTH = 100;
-    private final int BACK_BTN_HEIGHT = 100;
-    private final int BACK_BTN_X = CustomView.screen_width - BACK_BTN_WIDTH;
-    private final int BACK_BTN_Y = CustomView.screen_height / 2 + RUN_BTN_HEIGHT + 20;
+    RectF back_bnt_rect = new RectF(
+            CustomView.screen_width - 150, CustomView.screen_height / 2 + 100 + 20,
+            CustomView.screen_width + 40, CustomView.screen_height / 2 + 100 + 100 + 20 + 50
+    );
 
     public boolean executing = false;
     final long millisPerExecuteStep = 1000;
@@ -81,7 +83,7 @@ public class CodingArea {
     void Update(Input input, float blockBarRight) {
         // Look for the RUN button
         // If run button touched then run
-        if (input.isRectPressed(RUN_BTN_X, RUN_BTN_Y, RUN_BTN_WIDTH, RUN_BTN_HEIGHT)) {
+        if (input.isRectPressed(run_btn_rect)) {
             executing = true;
             lastExecuteTime = System.currentTimeMillis();
         }
@@ -91,8 +93,7 @@ public class CodingArea {
         }
 
         // Look for BACK button
-        if(input.isRectPressed(BACK_BTN_X, BACK_BTN_Y,
-                BACK_BTN_WIDTH, BACK_BTN_HEIGHT)){
+        if(input.isRectPressed(back_bnt_rect)){
             CustomView.isRunning = false;
         }
 
@@ -117,7 +118,7 @@ public class CodingArea {
             if(input.getTouches().size() > 0 && input.getTouches().get(0).isReleased()) {
                 if(b.position.x + b.getImageRect().width() / 2 <= blockBarRight) {
                     blocks.remove(draggedBlockIndex);
-                } else {
+                } else if(blocks.size() > 1) {
                     SnapInPlace();
                 }
                 draggedBlockIndex = -1;
@@ -148,11 +149,13 @@ public class CodingArea {
     void DrawOverOutput(Canvas canvas) {
         //Temporary run button for Coding Area
         redPaint.setColor(Color.RED);
-        canvas.drawRect(RUN_BTN_X, RUN_BTN_Y, RUN_BTN_X + RUN_BTN_WIDTH, RUN_BTN_Y + RUN_BTN_HEIGHT, redPaint);
+        Rect src = new Rect(0, 0, ImageHandler.images[ImageHandler.RUN_BUTTON].getWidth(),
+                ImageHandler.images[ImageHandler.RUN_BUTTON].getHeight());
+        canvas.drawBitmap(ImageHandler.images[ImageHandler.RUN_BUTTON], src, run_btn_rect, null);
 
         //Temporary back button for Coding Area
         blackPaint.setColor(Color.BLACK);
-        canvas.drawRect(BACK_BTN_X, BACK_BTN_Y, BACK_BTN_X + BACK_BTN_WIDTH, BACK_BTN_Y + BACK_BTN_HEIGHT, blackPaint);
+        canvas.drawBitmap(ImageHandler.images[ImageHandler.BACK_BUTTON], src, back_bnt_rect, null);
     }
 
     // loops through blocks array and calls their .execute function
@@ -292,6 +295,7 @@ public class CodingArea {
                 blockToSnap1IntoDist.length() < blockToSnapBelowDist.length()) {
 //            System.out.println("snap1: (" + (toSnapIn.position.x - blockToSnap1IntoDist2.x) + ", " + (toSnapIn.position.y - blockToSnap1IntoDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnap1IntoDist);
+
             // TODO: reflect snapping in blocks array
         } else if(blockToSnap2IntoDist.length() < blockToSnapAboveDist.length() &&
                 blockToSnap2IntoDist.length() < blockToSnapBelowDist.length()) {
@@ -301,11 +305,27 @@ public class CodingArea {
         } else if(blockToSnapAboveDist.length() < blockToSnapBelowDist.length()) {
 //            System.out.println("above: (" + (toSnapIn.position.x - blockToSnapAboveDist2.x) + ", " + (toSnapIn.position.y - blockToSnapAboveDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnapAboveDist);
-            // TODO: reflect snapping in blocks array
+            int snapInIndex = blockToSnapAboveIndex;
+            if(draggedBlockIndex < snapInIndex) {
+                snapInIndex--;
+            }
+            blocks.remove(draggedBlockIndex);
+            blocks.add(snapInIndex, toSnapIn);
+            // TODO: if there were things above where this was, move the blocks below where it was up
+            // TODO: if there are things below where this is now, move the blocks down
+            // TODO: loop upwards and see if we're adding above a block that is within other blocks
         } else {
 //            System.out.println("below: (" + (toSnapIn.position.x - blockToSnapBelowDist2.x) + ", " + (toSnapIn.position.y - blockToSnapBelowDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnapBelowDist);
-            // TODO: reflect snapping in blocks array
+            int snapInIndex = blockToSnapAboveIndex + 1;
+            if(draggedBlockIndex < snapInIndex) {
+                snapInIndex--;
+            }
+            blocks.remove(draggedBlockIndex);
+            blocks.add(snapInIndex, toSnapIn);
+            // TODO: if there were things above where this was, move the blocks below where it was up
+            // TODO: if there are things below where this is now, move the blocks down
+            // TODO: loop upwards and see if we're adding below a block that is within other blocks
         }
     }
 }
