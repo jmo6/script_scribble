@@ -295,7 +295,7 @@ public class CodingArea {
                 blockToSnap1IntoDist.length() < blockToSnapBelowDist.length()) {
 //            System.out.println("snap1: (" + (toSnapIn.position.x - blockToSnap1IntoDist2.x) + ", " + (toSnapIn.position.y - blockToSnap1IntoDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnap1IntoDist);
-
+            
             // TODO: reflect snapping in blocks array
         } else if(blockToSnap2IntoDist.length() < blockToSnapAboveDist.length() &&
                 blockToSnap2IntoDist.length() < blockToSnapBelowDist.length()) {
@@ -317,7 +317,7 @@ public class CodingArea {
         } else {
 //            System.out.println("below: (" + (toSnapIn.position.x - blockToSnapBelowDist2.x) + ", " + (toSnapIn.position.y - blockToSnapBelowDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnapBelowDist);
-            int snapInIndex = blockToSnapAboveIndex + 1;
+            int snapInIndex = blockToSnapBelowIndex + 1;
             if(draggedBlockIndex < snapInIndex) {
                 snapInIndex--;
             }
