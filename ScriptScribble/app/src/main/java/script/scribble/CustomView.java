@@ -67,6 +67,11 @@ public class CustomView extends SurfaceView implements Runnable {
         codingArea = new CodingArea();
         blockMenu = new BlockMenu(codingArea);
         outputWindow = new OutputWindow(codingArea);
+        if(CodingArea.Test()) {
+            System.out.println("tests passed");
+        } else {
+            System.out.println("tests not passed");
+        }
         this.myThread.start();
     }
 

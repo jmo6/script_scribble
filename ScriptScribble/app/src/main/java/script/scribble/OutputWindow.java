@@ -20,7 +20,7 @@ public class OutputWindow {
 
     public static ArrayList<ArrayList<Integer>> grid;
     public static Character character;
-    static int num_cells = 11;
+    public static int num_cells = 11;
     int grid_cell_width = CustomView.screen_width / num_cells;
     int grid_cell_height = (CustomView.screen_height / 2) / num_cells;
     public Vector2f scale = new Vector2f(0.15f, 0.15f);

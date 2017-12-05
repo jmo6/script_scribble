@@ -34,10 +34,10 @@ public class IsRightSpaceOpenBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Right Space Open Executed");
-        if(OutputWindow.grid.get((int)OutputWindow.character.position.y).size() <= (int)(OutputWindow.character.position.x + 1)) {
+        if((int)(OutputWindow.character.position.x + 1) >= OutputWindow.num_cells) {
             return FALSE;
         }
-        if(OutputWindow.grid.get((int)OutputWindow.character.position.y).get((int)(OutputWindow.character.position.x + 1)) == OutputWindow.OBSTACLE) {
+        if(OutputWindow.grid.get((int)(OutputWindow.character.position.x + 1)).get((int)(OutputWindow.character.position.y)) == OutputWindow.OBSTACLE) {
             return FALSE;
         }
         return TRUE;

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
+import script.scribble.OutputWindow;
 import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
@@ -33,6 +34,12 @@ public class IsDownSpaceOpenBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Down Space Open Block Executed");
+        if((int)(OutputWindow.character.position.y + 1) >= OutputWindow.num_cells) {
+            return FALSE;
+        }
+        if(OutputWindow.grid.get((int)OutputWindow.character.position.x).get((int)(OutputWindow.character.position.y + 1)) == OutputWindow.OBSTACLE) {
+            return FALSE;
+        }
         return TRUE;
     }
 

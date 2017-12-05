@@ -6,6 +6,7 @@ import android.util.Log;
 
 import script.scribble.BlockMenu;
 import script.scribble.CodingArea;
+import script.scribble.OutputWindow;
 import script.scribble.util.ImageHandler;
 import script.scribble.util.Vector2f;
 
@@ -33,6 +34,12 @@ public class IsLeftSpaceOpenBlock extends Block {
     @Override
     public int Execute(CodingArea codingArea) {
         Log.d(LOG_TAG, "Is Left Space Open Block Executed");
+        if((int)(OutputWindow.character.position.x - 1) < 0) {
+            return FALSE;
+        }
+        if(OutputWindow.grid.get((int)(OutputWindow.character.position.x - 1)).get((int)(OutputWindow.character.position.y)) == OutputWindow.OBSTACLE) {
+            return FALSE;
+        }
         return TRUE;
     }
 

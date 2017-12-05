@@ -13,10 +13,15 @@ import java.util.ArrayList;
 
 import script.scribble.blocks.AndBlock;
 import script.scribble.blocks.Block;
+import script.scribble.blocks.ElseBlock;
 import script.scribble.blocks.IfBlock;
+import script.scribble.blocks.IsDownSpaceOpenBlock;
 import script.scribble.blocks.IsLeftSpaceOpenBlock;
 import script.scribble.blocks.IsRightSpaceOpenBlock;
+import script.scribble.blocks.IsUpSpaceOpenBlock;
 import script.scribble.blocks.MoveBlock;
+import script.scribble.blocks.NotBlock;
+import script.scribble.blocks.OrBlock;
 import script.scribble.blocks.RotateBlock;
 import script.scribble.blocks.WhileBlock;
 import script.scribble.util.ImageHandler;
@@ -58,24 +63,57 @@ public class CodingArea {
     public CodingArea() {
         draggedBlockIndex = -1;
         blocks = new ArrayList<Block>();
-        // debug code
-//        blocks.add(new RotateBlock());
-//        blocks.add(new RotateBlock());
-//        blocks.add(new RotateBlock());
-//        blocks.add(new MoveBlock());
-//        blocks.add(new RotateBlock());
-//        blocks.add(new WhileBlock());
-//        ((WhileBlock)blocks.get(5)).firstBlockInThenIndex = 9;
-//        ((WhileBlock)blocks.get(5)).lastBlockInThenIndex = 9;
-//        ((WhileBlock)blocks.get(5)).index = 5;
-//        blocks.add(new AndBlock());
-//        blocks.add(new IsRightSpaceOpenBlock());
-//        blocks.add(new IsLeftSpaceOpenBlock());
-//        blocks.add(new MoveBlock());
-//        Execute();
-
         bluePaint.setARGB(255, 0, 0, 255);
+    }
 
+    public static boolean Test() {
+        CodingArea codingArea = new CodingArea();
+        codingArea.blocks.add(new IfBlock());
+        codingArea.blocks.get(0).firstBlockInThenIndex = 5;
+        codingArea.blocks.get(0).lastBlockInThenIndex = 5;
+        codingArea.blocks.get(0).index = 0;
+        codingArea.blocks.add(new NotBlock());
+        codingArea.blocks.add(new OrBlock());
+        codingArea.blocks.add(new IsLeftSpaceOpenBlock());
+        codingArea.blocks.add(new IsUpSpaceOpenBlock());
+
+        codingArea.blocks.add(new MoveBlock());
+        codingArea.blocks.add(new ElseBlock());
+        codingArea.blocks.get(6).firstBlockInThenIndex = 7;
+        codingArea.blocks.get(6).lastBlockInThenIndex = 7;
+        codingArea.blocks.get(6).index = 6;
+        codingArea.blocks.add(new RotateBlock());
+
+        codingArea.blocks.add(new RotateBlock());
+        codingArea.blocks.add(new WhileBlock());
+        codingArea.blocks.get(9).firstBlockInThenIndex = 13;
+        codingArea.blocks.get(9).lastBlockInThenIndex = 13;
+        codingArea.blocks.get(9).index = 9;
+        codingArea.blocks.add(new AndBlock());
+        codingArea.blocks.add(new IsDownSpaceOpenBlock());
+        codingArea.blocks.add(new IsRightSpaceOpenBlock());
+        codingArea.blocks.add(new MoveBlock());
+
+        OutputWindow.grid = new ArrayList<ArrayList<Integer>>();
+        for(int i = 0; i < OutputWindow.num_cells; i++) {
+            OutputWindow.grid.add(new ArrayList<Integer>());
+            for(int j = 0; j < OutputWindow.num_cells; j++) {
+                OutputWindow.grid.get(i).add(OutputWindow.EMPTY);
+            }
+        }
+        codingArea.executing = true;
+        while(codingArea.executing) {
+            codingArea.Execute(true);
+        }
+        System.out.println(OutputWindow.character.position.x + ", " + OutputWindow.character.position.y);
+        if(OutputWindow.character.position.y == OutputWindow.num_cells / 2 &&
+                OutputWindow.character.position.x == OutputWindow.num_cells - 1) {
+            OutputWindow.Reset();
+            return true;
+        }
+
+        OutputWindow.Reset();
+        return false;
     }
 
     // handle moving blocks to block menu
@@ -88,7 +126,7 @@ public class CodingArea {
             lastExecuteTime = System.currentTimeMillis();
         }
         if(executing && System.currentTimeMillis() >= lastExecuteTime + millisPerExecuteStep) {
-            Execute();
+            Execute(false);
             lastExecuteTime = System.currentTimeMillis();
         }
 
@@ -160,7 +198,7 @@ public class CodingArea {
 
     // loops through blocks array and calls their .execute function
     // handle if a block's execute function returns ERROR
-    int Execute() {
+    int Execute(boolean testing) {
         if(!executing) return Block.FALSE;
         // TODO: disable moving of blocks while executing
         if(currentExecutingBlockIndex < blocks.size()) {
@@ -169,7 +207,11 @@ public class CodingArea {
             }
             currentExecutingBlockIndex++;
         }
-        if(currentExecutingBlockIndex >= blocks.size()) {
+        if(!testing && currentExecutingBlockIndex >= blocks.size()) {
+//            executing = false;
+//            currentExecutingBlockIndex = 0;
+            OutputWindow.Reset();
+        } else if(testing && currentExecutingBlockIndex >= blocks.size()) {
             executing = false;
             currentExecutingBlockIndex = 0;
         }
@@ -295,7 +337,7 @@ public class CodingArea {
                 blockToSnap1IntoDist.length() < blockToSnapBelowDist.length()) {
 //            System.out.println("snap1: (" + (toSnapIn.position.x - blockToSnap1IntoDist2.x) + ", " + (toSnapIn.position.y - blockToSnap1IntoDist2.y) + ")");
             toSnapIn.position = toSnapIn.position.add(blockToSnap1IntoDist);
-            
+
             // TODO: reflect snapping in blocks array
         } else if(blockToSnap2IntoDist.length() < blockToSnapAboveDist.length() &&
                 blockToSnap2IntoDist.length() < blockToSnapBelowDist.length()) {
